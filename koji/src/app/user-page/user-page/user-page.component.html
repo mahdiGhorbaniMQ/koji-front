@@ -1,0 +1,13 @@
+<div class="user-page" (window:resize)="onResize()">
+    <div class="container" id="user-page-container">
+        <div class="header-container" [ngStyle]="information.headerStyle">
+            <app-header></app-header>
+        </div>
+        <div class="nav-bar-container" [ngStyle]="information.navBarStyle">
+            <app-nav-bar></app-nav-bar>
+        </div>
+        <div class="body-container" [ngStyle]="information.bodyStyle">
+            <app-body></app-body>
+        </div>
+    </div>
+</div>

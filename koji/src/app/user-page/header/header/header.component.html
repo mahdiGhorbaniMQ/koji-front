@@ -1,0 +1,15 @@
+<div class="header-container" (window:resize)="onResize()">
+    <div class="header p-3">
+        <div class="header-item-container">
+            <div class="header-item text-white" *ngFor="let item of headerItems" (click)="routing(item.path)">
+                {{item.title}}
+            </div>
+        </div>
+        <div class="search-container">
+            <app-header-search></app-header-search>
+        </div>
+        <div class="showDetailesBtn text-white h6 " [ngStyle]="showDetailesBtnStyle" (click)="switching()">
+            {{detailesBtnContent}}
+        </div>
+    </div>
+</div>

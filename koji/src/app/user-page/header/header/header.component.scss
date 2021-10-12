@@ -1,0 +1,23 @@
+.header-container{
+    position: absolute; display: flex;
+    width: 100%; height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.header{
+    position: absolute;
+    width: 100%; height: 80%;
+    // background-color: lightskyblue;
+    border-radius: 30px;
+    background: -webkit-linear-gradient(to right bottom, rgb(5, 67, 105), rgba(252, 0, 105, 0.562));
+    background: linear-gradient(to right bottom, rgb(5, 67, 105), rgba(252, 0, 105, 0.562));
+}
+.showDetailesBtn{
+    position: absolute;
+    width: 10px;
+    height: 20px;
+    top: 130px;
+    transition: all 1s;
+    background-color: rgba(252, 0, 105, 0.747);
+    z-index: 1;
+}
