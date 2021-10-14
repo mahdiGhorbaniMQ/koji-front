@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CallenderComponent } from './callender/callender.component';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    CallenderComponent
+  ],
   imports: [
     CommonModule
   ]

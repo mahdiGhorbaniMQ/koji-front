@@ -1,23 +1,31 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { CallenderComponent } from './callender/callender/callender.component';
+import { GroupComponent } from './group/group/group.component';
+import { HistoryComponent } from './history/history/history.component';
+import { UserHomeComponent } from './user-home/user-home/user-home.component';
 
 const routes: Routes = [
-  // {
-  //   path: "",
-  //   component: AboutUsPageComponent,
-  //   loadChildren: () => import('./about-us-page/about-us-page.module').then(m => m.AboutUsPageModule)
-  // },
-  // {
-  //   path: "login",
-  //   component: LoginPageComponent,
-  //   loadChildren: () => import('./login-page/login-page.module').then(m => m.LoginPageModule)
-  // },
-  // {
-  //   path: "user",
-  //   component: UserPageComponent,
-  //   loadChildren: () => import('./user-page/user-page.module').then(m => m.UserPageModule)
-
-  // },
+  {
+    path: "home",
+    component: UserHomeComponent,
+    loadChildren: () => import('./user-home/user-home.module').then(m => m.UserHomeModule)
+  },
+  {
+    path: "callender",
+    component: CallenderComponent,
+    loadChildren: () => import('./callender/callender.module').then(m => m.CallenderModule)
+  },
+  {
+    path: "history",
+    component: HistoryComponent,
+    loadChildren: () => import('./history/history.module').then(m => m.HistoryModule)
+  },
+  {
+    path: "group",
+    component: GroupComponent,
+    loadChildren: () => import('./group/group.module').then(m => m.GroupModule)
+  },
 ];
 
 @NgModule({

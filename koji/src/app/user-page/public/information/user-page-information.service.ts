@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { StyleModel } from '../../public/models/style-model';
+import { GroupModel } from '../../body/user-home/model/group-model';
+import { StyleModel } from '../models/style-model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserPageInformationService {  
+export class UserPageInformationService {
+  selectedGroup:GroupModel | undefined;
   headerStyle:StyleModel={};
   bodyStyle:StyleModel={};
   navBarStyle:StyleModel={};

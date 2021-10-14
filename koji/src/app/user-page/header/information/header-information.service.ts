@@ -9,16 +9,16 @@ export class HeaderInformationService {
   constructor() { 
     this.headerItems=[
       {
-        title:"home",
-        path:""
+        title:"گروه ها",
+        path:"user/home"
       },
       {
-        title:"hestory",
-        path:""
+        title:"تاریخچه قرار ها",
+        path:"user/history"
       },
       {
-        title:"callender",
-        path:""
+        title:"تقویم",
+        path:"user/callender"
       },
     ]
   }

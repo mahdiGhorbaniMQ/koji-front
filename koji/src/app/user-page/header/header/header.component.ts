@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserPageControllerService } from '../../public/controller/user-page-controller.service';
 import { StyleModel } from '../../public/models/style-model';
-import { UserPageControllerService } from '../../user-page/controller/user-page-controller.service';
 import { HeaderControllerService } from '../controller/header-controller.service';
 import { HeaderItemModel } from '../model/header-item-model';
 
@@ -58,6 +58,10 @@ export class HeaderComponent implements OnInit {
     this.checkWindowWidth();
   }
   routing(path:string){
+    if(this.showingNavBar){
+      this.switching();
+    }
+    this.userPageController.setSelectedGroup(undefined);
     this.router.navigate([path]);
   }
 }

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { StyleModel } from '../public/models/style-model';
-import { UserPageControllerService } from './controller/user-page-controller.service';
-import { UserPageInformationService } from './information/user-page-information.service';
+import { UserPageControllerService } from '../public/controller/user-page-controller.service';
+import { UserPageInformationService } from '../public/information/user-page-information.service';
 
 @Component({
   selector: 'app-user-page',
