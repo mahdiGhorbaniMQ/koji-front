@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CallenderComponent } from './callender/callender.component';
+import { CallenderComponent } from './callender.component';
 
 
 
