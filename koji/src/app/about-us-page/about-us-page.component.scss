@@ -1,9 +1,11 @@
 .body{
-    background-color: rgb(4, 99, 99)
+    background-color: rgb(44, 103, 114);
+    // background: -webkit-linear-gradient(to bottom, rgb(4, 99, 99), #a26ff3);
+    // background: linear-gradient(to bottom, rgb(4, 99, 99), #a26ff3);
 }
 .line{
     position: relative;
-    height: 5px; width: 100%;
-    left: -2.5%;
-    background-color: rgb(255, 81, 0);
+    height: 5px; width: 85%;
+    right: -2%;
+    background-color: #FAC42D;
 }
