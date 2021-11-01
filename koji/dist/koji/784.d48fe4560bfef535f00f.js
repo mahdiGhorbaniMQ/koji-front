@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkoji=self.webpackChunkkoji||[]).push([[784],{784:(d,n,u)=>{u.r(n),u.d(n,{HistoryModule:()=>l});var t=u(8583),s=u(639);let l=(()=>{class o{}return o.\u0275fac=function(a){return new(a||o)},o.\u0275mod=s.oAB({type:o}),o.\u0275inj=s.cJS({imports:[[t.ez]]}),o})()}}]);

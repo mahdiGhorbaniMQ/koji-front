@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkkoji=self.webpackChunkkoji||[]).push([[287],{7287:(s,n,e)=>{e.r(n),e.d(n,{CallenderModule:()=>a});var u=e(8583),o=e(639);let a=(()=>{class l{}return l.\u0275fac=function(r){return new(r||l)},l.\u0275mod=o.oAB({type:l}),l.\u0275inj=o.cJS({imports:[[u.ez]]}),l})()}}]);
