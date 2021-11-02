@@ -1,13 +1,18 @@
 <div class="user-page" (window:resize)="onResize()">
-    <div class="container-liquid p-3" id="user-page-container">
-        <div class="header-container" [ngStyle]="information.headerStyle">
-            <app-header></app-header>
-        </div>
-        <div class="nav-bar-container" [ngStyle]="information.navBarStyle">
-            <app-nav-bar></app-nav-bar>
-        </div>
-        <div class="body-container" [ngStyle]="information.bodyStyle">
-            <app-body></app-body>
-        </div>
+    <div class="header-container bg-dark" [ngStyle]="information.headerStyle">
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" س dir="rtl">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="">
+                <img src="../../assets/logo.jpeg" alt="لوگو" style="width:40px;" class="rounded-pill">
+                <span class="h3 m-4">کجی</span>
+              </a>
+            </div>
+        </nav> 
+    </div>
+    <div class="nav-bar-container" [ngStyle]="information.navBarStyle">
+        <app-nav-bar></app-nav-bar>
+    </div>
+    <div class="body-container" [ngStyle]="information.bodyStyle">
+        <app-body></app-body>
     </div>
 </div>

@@ -24,4 +24,5 @@ export class UserHomeComponent implements OnInit {
     this.userPageController.setSelectedGroup(group);
     this.router.navigate(["/user/group"]);
   }
+
 }

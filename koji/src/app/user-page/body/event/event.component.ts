@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
 import { ConditionsModel } from 'src/app/public/models/conditions-model';
 import { EventModel } from 'src/app/public/models/event-model';
@@ -24,7 +25,8 @@ export class EventComponent implements OnInit {
   places:string[]=[];
   dates:string[]=[];
   constructor(private userPageController:UserPageControllerService,
-              private eventController:EventControllerService) { }
+              private eventController:EventControllerService,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.eventController.setEventData()
@@ -50,5 +52,8 @@ export class EventComponent implements OnInit {
   }
   setUserConditions(){
     this.selectedEvent.conditions?.set("شما",{placeName:this.places,localDate:this.dates,state:this.state})
+  }
+  back(){
+    this.router.navigate(["user/group"])
   }
 }

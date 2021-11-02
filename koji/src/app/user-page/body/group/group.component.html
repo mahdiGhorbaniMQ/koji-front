@@ -1,7 +1,12 @@
 <div class="group-container">
     <div class="group">
-        <div class="h2 text-center header">
-            قرار های این گروه
+        <div class="h2 text-right header" dir="rtl">
+            <button class="btn btn-back-container bg-dark text-white rounded-pill h6" (click)="back()">
+                <
+            </button>
+            <div class="">
+                قرار های این گروه
+            </div>
         </div>
         <div dir="rtl" 
             *ngFor="let event of selectedGroup.events"

@@ -13,17 +13,20 @@ export class UserPageComponent implements OnInit {
               public information:UserPageInformationService) { }
 
   ngOnInit(): void {
-    this.checkWindowWidth()
+    this.userPageContreoller.getPageSize();
+    this.checkWindowSize()
   }
-  checkWindowWidth(){
+  checkWindowSize(){
+    this.userPageContreoller.setElementsHeight();
     if(window.innerWidth<=800){
-      this.userPageContreoller.switchToBody();
+      this.userPageContreoller.hideNavBar();
     }
     else{
-      this.userPageContreoller.switchToBothOfBodyAndNavBar();
+      this.userPageContreoller.showNavBar();
     }
   }
   onResize(){
-    this.checkWindowWidth()
+    this.userPageContreoller.getPageSize();
+    this.checkWindowSize()
   }
 }

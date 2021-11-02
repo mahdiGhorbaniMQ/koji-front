@@ -1,40 +1,28 @@
-<div class="nav-bar-container">
+<div class="nav-bar-container" (window:resize)="onResize()">
     <div class="nav-bar">
-        <div
-            *ngIf="userPageInformation.selectedGroup!==undefined"
-            class="group-container"
-            >
-            <div class="image-container">
-                <img src="../../../../assets/noProfile.jpg" alt="" width="130px" height="130px" class="rounded-pill">
-                <div class="text-center h4 name-container text-white">{{userPageInformation.selectedGroup.name}}</div>
+        <div class="nav-bar-controller" *ngIf="userPageInformation.pageWidth<=800 || userPageInformation.showMenu">
+            <button class="btn btn-dark" (click)="changeNavBarState()">{{navBarControlleContent}}</button>
+        </div>
+        <div class="image-container" *ngIf="userPageInformation.pageWidth>800 || userPageInformation.showMenu">
+            <img src="../../../../assets/noProfile.jpg" alt="" width="130px" height="130px" class="rounded-pill">
+            <div
+                *ngIf="userPageInformation.selectedGroup!==undefined"
+                class="text-center h4 name-container text-white">
+                {{userPageInformation.selectedGroup.name}}
             </div>
-
-            <div class="options-container">
-
-                <button class="btn btn-info row option-item mb-3">مشخصات گروه</button>
-                <button class="btn btn-info row option-item mb-3">نمایش اعضاء</button>
-                <button class="btn btn-info row option-item mb-3">تنظیم قرار جدید</button>
-                <button class="btn btn-info row option-item mb-3">تنظیمات گروه</button>
-
+            <div 
+                *ngIf="userPageInformation.selectedGroup===undefined"    
+                class="text-center h4 name-container text-white">
+                {{userData.name}}
             </div>
         </div>
-
-        <div
-            *ngIf="userPageInformation.selectedGroup===undefined"
-            class="user-container"
-            >
-            <div class="image-container">
-                <img src="../../../../assets/noProfile.jpg" alt="" width="130px" height="130px" class="rounded-pill">
-                <div class="text-center h4 name-container text-white">{{userData.name}}</div>
-            </div>
-            <div class="options-container">
-
-                <button class="btn btn-info row option-item mb-3">نمایش پروفایل</button>
-                <button class="btn btn-info row option-item mb-3">ساختن گروه</button>
-                <button class="btn btn-info row option-item mb-3">تنظیمات</button>
-                <button class="btn btn-info row option-item mb-3">دعوت دوستان</button>
-
-            </div>
+        <div class="options-container" *ngIf="userPageInformation.pageWidth>800 || userPageInformation.showMenu">
+            <button class="btn btn-dark text-white row option-item mb-3">تنظیم قرار جدید</button>
+            <button class="btn btn-dark text-white row option-item mb-3">نمایش پروفایل</button>
+            <button class="btn btn-dark text-white row option-item mb-3">جستوجوی گروه</button>
+            <button class="btn btn-dark text-white row option-item mb-3">ساختن گروه</button>
+            <button class="btn btn-dark text-white row option-item mb-3">تنظیمات سایت</button>
         </div>
+
     </div>
 </div>

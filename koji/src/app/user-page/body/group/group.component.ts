@@ -23,4 +23,8 @@ export class GroupComponent implements OnInit {
     this.usrePageController.setSelectedEvent(event)
     this.router.navigate(["user/group/event"]);
   }
+  back(){
+    this.usrePageController.setSelectedGroup(undefined);
+    this.router.navigate(["/user/home"]);
+  }
 }

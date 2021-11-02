@@ -25,51 +25,37 @@ export class UserPageControllerService {
       return this.information.selectedEvent;
     return this.information.emptyEvent;
   }
-  hideNavBar(){
-    this.information.navBarStyle={
-      "transform": "rotate(-15deg) translate(-400px,0)"
-    }
-  }
-  showNavBar(){
-    this.information.navBarStyle={}
-  }
-  hideBody(){
-    this.information.bodyStyle={
-      "transform": "rotate(15deg) translate(800px,0)"
-    }
-  }
-  magnifyNavBar(){
-    this.information.navBarStyle["width"]="180px"
-  }
-  unMagnifyNavBar(){
-    this.information.navBarStyle["width"]=undefined;
-  }
-  showBody(){
-    this.information.bodyStyle={}
-  }
-  switchToBody(){
-    if(window.innerWidth<=800){
-      this.showBody();
-      this.hideNavBar();
-      this.unMagnifyNavBar();
-    }
-  }
-  switchToNavBar(){
-    if(window.innerWidth<=800){
-      this.showNavBar();
-      this.magnifyNavBar();
-      this.hideBody();
-    }
-  }
-  switchToBothOfBodyAndNavBar(){
-    this.showBody();
-    this.showNavBar();
-    this.unMagnifyNavBar();
-  }
   setToken(token:string){
 
   }
   getToken():string{
     return "token"
+  }
+  getPageSize(){
+    this.information.pageWidth=window.innerWidth;
+    this.information.pageHeight=window.innerHeight;
+  }
+  setElementsHeight(){
+      this.information.bodyStyle["height"]=this.information.pageHeight-75+"px";
+      this.information.navBarStyle["height"]=this.information.pageHeight-75+"px";
+  }
+  hideNavBar(){
+    this.information.navBarStyle["width"]="50px";
+    this.information.bodyStyle["width"]=this.information.pageWidth-50+"px";
+    this.information.bodyStyle["left"]="50px";
+    this.information.showMenu=false;
+  }
+  showNavBar(){
+    if(window.innerWidth<800){
+        this.information.navBarStyle["width"]=this.information.pageWidth+"px";
+        this.information.bodyStyle["left"]=this.information.pageWidth+"px";
+        this.information.showMenu=true;
+    }
+    else{
+        this.information.navBarStyle["width"]="250px";
+        this.information.bodyStyle["width"]=this.information.pageWidth-250+"px";
+        this.information.bodyStyle["left"]="250px";
+        this.information.showMenu=false;
+    }
   }
 }

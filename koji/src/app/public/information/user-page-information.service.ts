@@ -14,6 +14,9 @@ export class UserPageInformationService {
   headerStyle:StyleModel={};
   bodyStyle:StyleModel={};
   navBarStyle:StyleModel={};
+  pageWidth!:number;
+  pageHeight!:number;
+  showMenu:boolean=false;
   constructor() {
     this.headerStyle={};
     this.bodyStyle={};

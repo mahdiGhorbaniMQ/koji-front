@@ -42,13 +42,13 @@ export class HeaderComponent implements OnInit {
       this.showDetailesBtnStyle={
         "transform":"rotate(0deg)"
       }
-      this.userPageController.switchToBody();
+      this.userPageController.hideNavBar();
       this.detailesBtnContent=">";
     }else{
       this.showDetailesBtnStyle={
         "transform":"rotate(15deg) translate(200px,50px)"
       }
-      this.userPageController.switchToNavBar()   
+      this.userPageController.showNavBar()   
       this.detailesBtnContent="<";   
     }
     this.showingNavBar=!this.showingNavBar;
