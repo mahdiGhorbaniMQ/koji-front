@@ -6,6 +6,12 @@
                 <img src="../../assets/logo.jpeg" alt="لوگو" style="width:40px;" class="rounded-pill">
                 <span class="h3 m-4">کجی</span>
               </a>
+                <button 
+                    class="btn btn-warning menu-controll-btn" 
+                    *ngIf="information.pageWidth<=800 || information.showMenu"
+                    (click)="changeNavBarState()">
+                    {{navBarControlleContent}}
+                </button>
             </div>
         </nav> 
     </div>

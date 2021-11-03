@@ -11,24 +11,10 @@ import { UserModel } from 'src/app/public/models/user-model';
 })
 export class NavBarComponent implements OnInit {
   userData!:UserModel;
-  navBarControlleContent:string=">";
   constructor(private userPageController:UserPageControllerService,
               public userPageInformation:UserPageInformationService,
               private userController:UserControllerService) { }
   ngOnInit(): void {
     this.userData=this.userController.getUserData();
-  }
-  changeNavBarState(){
-    if(this.userPageInformation.showMenu){
-      this.userPageController.hideNavBar();
-      this.navBarControlleContent=">";
-    }
-    else{
-      this.userPageController.showNavBar();
-      this.navBarControlleContent="<";
-    }
-  }
-  onResize(){
-    this.navBarControlleContent=">";
   }
 }

@@ -3,19 +3,19 @@ import { Router } from '@angular/router';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
 
 @Component({
-  selector: 'app-history',
-  templateUrl: './history.component.html',
-  styleUrls: ['./history.component.scss']
+  selector: 'app-site-setting',
+  templateUrl: './site-setting.component.html',
+  styleUrls: ['./site-setting.component.scss']
 })
-export class HistoryComponent implements OnInit {
+export class SiteSettingComponent implements OnInit {
 
   constructor(private usrePageController:UserPageControllerService,
               private router:Router) { }
   ngOnInit(): void {}
 
   back(){
-      this.usrePageController.setSelectedGroup(undefined);
-      this.router.navigate([""]);
+    this.usrePageController.setSelectedGroup(undefined);
+    this.router.navigate([""]);
   }
 
 }

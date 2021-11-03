@@ -9,24 +9,37 @@ import { UserPageInformationService } from '../public/information/user-page-info
 })
 export class UserPageComponent implements OnInit {
 
-  constructor(private userPageContreoller:UserPageControllerService,
+  navBarControlleContent:string="<";
+
+  constructor(private userPageController:UserPageControllerService,
               public information:UserPageInformationService) { }
 
   ngOnInit(): void {
-    this.userPageContreoller.getPageSize();
+    this.userPageController.getPageSize();
     this.checkWindowSize()
   }
   checkWindowSize(){
-    this.userPageContreoller.setElementsHeight();
+    this.userPageController.setElementsHeight();
     if(window.innerWidth<=800){
-      this.userPageContreoller.hideNavBar();
+      this.userPageController.hideNavBar();
     }
     else{
-      this.userPageContreoller.showNavBar();
+      this.userPageController.showNavBar();
     }
   }
   onResize(){
-    this.userPageContreoller.getPageSize();
-    this.checkWindowSize()
+    this.userPageController.getPageSize();
+    this.checkWindowSize();
+    this.navBarControlleContent="<";
+  }
+  changeNavBarState(){
+    if(this.information.showMenu){
+      this.userPageController.hideNavBar();
+      this.navBarControlleContent="<";
+    }
+    else{
+      this.userPageController.showNavBar();
+      this.navBarControlleContent=">";
+    }
   }
 }

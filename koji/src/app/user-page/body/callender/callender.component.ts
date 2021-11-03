@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
 
 @Component({
   selector: 'app-callender',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CallenderComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private usrePageController:UserPageControllerService,
+              private router:Router) { }
+  ngOnInit(): void {}
+  
+  back(){
+    this.usrePageController.setSelectedGroup(undefined);
+    this.router.navigate([""]);
   }
-
 }

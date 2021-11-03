@@ -40,19 +40,21 @@ export class UserPageControllerService {
       this.information.navBarStyle["height"]=this.information.pageHeight-75+"px";
   }
   hideNavBar(){
-    this.information.navBarStyle["width"]="50px";
-    this.information.bodyStyle["width"]=this.information.pageWidth-50+"px";
-    this.information.bodyStyle["left"]="50px";
+    this.information.navBarStyle["left"]=-this.information.pageWidth+"px";
+    this.information.bodyStyle["width"]=this.information.pageWidth+"px";
+    this.information.bodyStyle["left"]="0";
     this.information.showMenu=false;
   }
   showNavBar(){
     if(window.innerWidth<800){
         this.information.navBarStyle["width"]=this.information.pageWidth+"px";
+        this.information.navBarStyle["left"]="0";
         this.information.bodyStyle["left"]=this.information.pageWidth+"px";
         this.information.showMenu=true;
     }
     else{
         this.information.navBarStyle["width"]="250px";
+        this.information.navBarStyle["left"]="0";
         this.information.bodyStyle["width"]=this.information.pageWidth-250+"px";
         this.information.bodyStyle["left"]="250px";
         this.information.showMenu=false;
