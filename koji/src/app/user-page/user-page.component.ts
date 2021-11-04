@@ -9,7 +9,6 @@ import { UserPageInformationService } from '../public/information/user-page-info
 })
 export class UserPageComponent implements OnInit {
 
-  navBarControlleContent:string="<";
 
   constructor(private userPageController:UserPageControllerService,
               public information:UserPageInformationService) { }
@@ -30,16 +29,13 @@ export class UserPageComponent implements OnInit {
   onResize(){
     this.userPageController.getPageSize();
     this.checkWindowSize();
-    this.navBarControlleContent="<";
   }
   changeNavBarState(){
     if(this.information.showMenu){
       this.userPageController.hideNavBar();
-      this.navBarControlleContent="<";
     }
     else{
       this.userPageController.showNavBar();
-      this.navBarControlleContent=">";
     }
   }
 }

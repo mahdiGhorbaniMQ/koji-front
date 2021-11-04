@@ -40,6 +40,7 @@ export class UserPageControllerService {
       this.information.navBarStyle["height"]=this.information.pageHeight-75+"px";
   }
   hideNavBar(){
+    this.information.navBarStyle["width"]=this.information.pageWidth+"px";
     this.information.navBarStyle["left"]=-this.information.pageWidth+"px";
     this.information.bodyStyle["width"]=this.information.pageWidth+"px";
     this.information.bodyStyle["left"]="0";

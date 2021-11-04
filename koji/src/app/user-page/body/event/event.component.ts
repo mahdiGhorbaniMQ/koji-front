@@ -22,8 +22,12 @@ export class EventComponent implements OnInit {
 
   state:number=1;
 
-  places:string[]=[];
-  dates:string[]=[];
+  places:{title:string,selected:boolean}[]=[];
+  dates:{title:string,selected:boolean}[]=[];
+  datesMap!:Map<number,string>;
+  placesMap!:Map<number,string>;
+  userDates:string[]=[];
+  userPlaces:string[]=[];
   constructor(private userPageController:UserPageControllerService,
               private eventController:EventControllerService,
               private router:Router) { }
@@ -31,29 +35,44 @@ export class EventComponent implements OnInit {
   ngOnInit(): void {
     this.eventController.setEventData()
     this.selectedEvent=this.userPageController.getSelectedEvent()!;
+    this.places=this.selectedEvent.conditions?.get("سازنده")?.placeName!;
+    this.dates=this.selectedEvent.conditions?.get("سازنده")?.localDate!;
   }
-  addPlace(){
-    if(this.placeInput!=""){
-      this.places.push(this.placeInput);
-      this.placeInput="";
-    }
+  changeDateItemState(index:number){
+    // if(this.datesMap.has(index)){
+    //   this.datesMap.delete(index);
+    //   this.dates[index].selected=false;
+    // }
+    // else{
+    //   this.datesMap.set(index,this.dates[index].title);
+    //   this.dates[index].selected=true;
+    // }
+    this.dates[index].selected=!this.dates[index].selected;
   }
-  deletePlace(index:number){
-    this.places.splice(index,1)
-  }
-  addDate(){
-    if(this.dateInput!=""){
-      this.dates.push(this.dateInput);
-      this.dateInput="";
-    }
-  }
-  deleteDate(index:number){
-    this.dates.splice(index,1)
+  changePlaceItemState(index:number){
+    // if(this.placesMap.has(index)){
+    //   this.placesMap.delete(index);
+    //   this.places[index].selected=false;
+    // }
+    // else{
+    //   this.placesMap.set(index,this.places[index].title);
+    //   this.places[index].selected=true;
+    // }
+    this.places[index].selected=!this.places[index].selected;
   }
   setUserConditions(){
+    // this.datesMap.forEach((value,key) => {
+    //   this.userDates.push(value);
+    // });
+    // this.placesMap.forEach((value,key) => {
+    //   this.userPlaces.push(value);
+    // });
     this.selectedEvent.conditions?.set("شما",{placeName:this.places,localDate:this.dates,state:this.state})
   }
   back(){
     this.router.navigate(["user/group"])
+  }
+  navigate(endpoint:string){
+    this.router.navigate([endpoint]);
   }
 }

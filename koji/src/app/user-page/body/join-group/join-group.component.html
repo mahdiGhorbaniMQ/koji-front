@@ -1,9 +1,32 @@
 <div class="join-group-container">
     <div class="join-group">
         <div class="h2 text-right header" dir="rtl">
+            <div>
+                جستوجوی گروه
+            </div>
             <button class="btn btn-back-container bg-dark text-white rounded-pill h6" (click)="back()">
                 <
             </button>
+        </div>
+        <div class="body" dir="rtl">
+            <div class="result-container" dir="rtl">
+                <div *ngIf="reqStatus=='loading'">
+                    در حال جستجو . . .
+                </div>
+                <div *ngIf="reqStatus=='error'">
+                    خطایی رخ داده است.
+                </div>
+                <div class="result bg-dark text-white" *ngIf="reqStatus=='success'">
+                    نام گروه: {{1}}
+                </div>
+                <button class="btn btn-success join-btn m-3" (click)="join()">
+                    عضو شدن
+                </button>
+            </div>
+            <div class="mt-5">
+                <input placeholder="آدرس گروه" style="height: 40px;" class="p-3" [(ngModel)]="groupLink">
+                <button class="btn btn-success m-3" (click)="search()">جستوجو</button>
+            </div>
         </div>
     </div>
 </div>

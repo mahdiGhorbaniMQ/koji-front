@@ -1,5 +1,5 @@
 export interface ConditionsModel {
-    localDate:string[];
-    placeName:string[];
+    localDate:{title:string,selected:boolean}[];
+    placeName:{title:string,selected:boolean}[];
     state:number
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CallenderComponent } from './callender/callender.component';
 import { CreateEventComponent } from './create-event/create-event.component';
+import { CreateGroupComponent } from './create-group/create-group.component';
 import { EventSettingComponent } from './event-setting/event-setting.component';
 import { EventComponent } from './event/event.component';
 import { GroupProfileComponent } from './group-profile/group-profile.component';
@@ -27,7 +28,7 @@ const routes: Routes = [
   },
   {
     path: "createGroup",
-    component: UserHomeComponent,
+    component: CreateGroupComponent,
     loadChildren: () => import('./create-group/create-group.module').then(m => m.CreateGroupModule)
   },
   {

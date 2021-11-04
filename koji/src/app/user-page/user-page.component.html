@@ -10,7 +10,12 @@
                     class="btn btn-warning menu-controll-btn" 
                     *ngIf="information.pageWidth<=800 || information.showMenu"
                     (click)="changeNavBarState()">
-                    {{navBarControlleContent}}
+                    <div *ngIf="information.showMenu">
+                        >
+                    </div>
+                    <div *ngIf="!information.showMenu">
+                        <
+                    </div>
                 </button>
             </div>
         </nav> 

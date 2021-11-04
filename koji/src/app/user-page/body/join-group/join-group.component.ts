@@ -9,12 +9,20 @@ import { UserPageControllerService } from 'src/app/public/controller/user-page-c
 })
 export class JoinGroupComponent implements OnInit {
 
+  reqStatus:string="success";
+  groupLink:string="";
   constructor(private usrePageController:UserPageControllerService,
               private router:Router) { }
   ngOnInit(): void {}
 
   back(){
     this.usrePageController.setSelectedGroup(undefined);
-    this.router.navigate([""]);
+    this.router.navigate(["user/home"]);
+  }
+  join(){
+
+  }
+  search(){
+
   }
 }

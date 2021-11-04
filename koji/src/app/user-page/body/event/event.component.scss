@@ -15,40 +15,41 @@
     background-color: rgba(255, 255, 255, 0.582);
     overflow: auto;
 }
-.detail-container{
+.header{
     position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    height: 30%;
+    height: 150px;
     border-bottom: 2px solid black;
     flex-direction: column;
 }
-.body-container{
+.body{
     position: absolute;
-    top: 30%;
+    top: 150px;
     width: 100%;
-    height: 70%;
+    // height: 70%;
     border-top: 2px solid black;
     border-top: none;
 }
-.selecting-bar{
+.navigate-panel{
     position: absolute;
     display: flex;
     width: 100%;
-    height: 10%;
+    height: 100px;
     border-bottom: 2px solid black;
 }
-.selecting-item{
-    width: 33.3333333%;
+.navigate-item{
+    width: 33.33%;
+    height: 98px;
     text-align: center;
     justify-content: center;
     align-items: center;
     display: flex;
     position: relative;
 }
-.selecting-item:hover{
+.navigate-item:hover{
     background-color: rgba(169, 169, 169, 0.575);
 }
 .selected{
@@ -56,8 +57,8 @@
 }
 .conditions-container{
     position: absolute;
-    top: 10%;
-    height: 90%;
+    top: 100px;
+    // height: 90%;
     width: 100%;
     padding: 30px;
 }
@@ -80,14 +81,24 @@
 .place-item,.dates-item{
     width: fit-content;
     margin: 2px;
+    border-radius: 5px;
 }
-.btn-back-container{
+.button-panle{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    right: 0;
+    top: -4px;
+    position: absolute;
+    height: 150px;
+}
+.button-panle button{
     display: flex;
     align-items: center;
     justify-content: center;
     width: 50px;
     height: 50px;
-    position: absolute;
-    right: 5px;
-    top: 40px;
+    border-radius: 50px;
+    position: relative;
 }
