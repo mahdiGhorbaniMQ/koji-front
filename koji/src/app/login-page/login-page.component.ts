@@ -65,12 +65,12 @@ export class LoginPageComponent implements OnInit {
     }); 
   }
   signUp(){
-    var user:UserModel
-    this.backendAPI.createAcount(user!)
+    var user!:UserModel
+    this.backendAPI.createAcount(user)
     .subscribe(
-      (response:Response) => {
-        const data = response.json();
-        this.userController.fillUserData("user","pass");
+      (data:any) => {
+        localStorage.setItem("tocken",data.body.tocken);
+        this.userController.fillUserData(data.body.tocken);
       },
       (error:Error) => console.log(error)
     )
@@ -80,6 +80,10 @@ export class LoginPageComponent implements OnInit {
       this.router.navigate(["/user"]);
     }
     else
-    this.userController.fillUserData("user","pass");
+    this.backendAPI.getTocken("username","password").subscribe((data:any) => {
+      localStorage.setItem("tocken",data.body.tocken);
+      this.userController.fillUserData(data.body.tocken);
+    });
+    
   }
 }

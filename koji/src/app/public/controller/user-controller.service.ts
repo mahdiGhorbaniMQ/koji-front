@@ -14,11 +14,12 @@ export class UserControllerService {
               private userInformation:UserInformationService,
               private router:Router) { }
   
-  getUserGroups():GroupModel[]{
-    return this.userInformation.groups;
-  }
-  fillUserData(email:string,pass:string){
-    this.backendAPI.getUserData(email)
+  // getUserGroups():GroupModel[]{
+  //   return this.userInformation.groups;
+  // }
+  fillUserData(tocken:string){
+
+    this.backendAPI.getUserData(tocken)
     .subscribe(
       (data: UserModel) => {
         // const data = response.json();
@@ -28,9 +29,5 @@ export class UserControllerService {
       },
       (error:Error) => console.log(error)
     )
-  }
-
-  getUserData():UserModel{
-    return this.userInformation.userData;
   }
 }

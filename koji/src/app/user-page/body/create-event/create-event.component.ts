@@ -17,13 +17,16 @@ export class CreateEventComponent implements OnInit {
   eventDescriptions!:FormControl;
   eventPlaces!:FormControl;
   eventDates!:FormControl;
+  eventGroups!:FormControl;
   placeInput!:FormControl;
   dateInput!:FormControl;
+  groupInput!:FormControl;
   createEventData={
     eventTitle:"",
     eventDescriptions:"",
     eventPlaces:new Array<string>(),
-    eventDates:new Array<string>()
+    eventDates:new Array<string>(),
+    eventGroups:new Array<string>()
   }
   constructor(private usrePageController:UserPageControllerService,
               private router:Router,
@@ -43,16 +46,22 @@ export class CreateEventComponent implements OnInit {
     this.eventDates= new FormControl(this.createEventData.eventDates, [
       Validators.required,
     ]);
+    this.eventGroups= new FormControl(this.createEventData.eventGroups, [
+      Validators.required,
+    ]);
     this.dateInput= new FormControl();
     this.placeInput= new FormControl();
+    this.groupInput= new FormControl();
     this.dateInput.setValue("");
     this.placeInput.setValue("");
+    this.groupInput.setValue("");
 
     this.createEventForm = this.builder.group({  
       eventTitle: this.eventTitle,  
       eventDescriptions: this.eventDescriptions, 
       eventPlaces: this.eventPlaces,
-      eventDates: this.eventDates
+      eventDates: this.eventDates,
+      eventGRoups: this.eventGroups
     });
   }
 
@@ -73,6 +82,15 @@ export class CreateEventComponent implements OnInit {
   }
   deleteDate(index:number){
     this.createEventData.eventDates.splice(index,1)
+  }
+  addGroup(){
+    if(this.groupInput.value!=""){
+      this.createEventData.eventGroups.push(this.groupInput.value);
+      this.groupInput.setValue("");
+    }
+  }
+  deleteGroup(index:number){
+    this.createEventData.eventGroups.splice(index,1)
   }
 
   back(){

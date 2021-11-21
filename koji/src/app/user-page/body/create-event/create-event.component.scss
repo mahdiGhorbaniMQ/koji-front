@@ -78,11 +78,11 @@ input,textarea{
     margin: 8px 0;
     width: 100%;
 }
-.places-container,.dates-container{
+.places-container,.dates-container,.groups-container{
     display: flex;
     flex-wrap: wrap;
 }
-.place-item,.dates-item{
+.place-item,.dates-item,.groups-container{
     width: fit-content;
     margin: 2px;
     border-radius: 5px;
