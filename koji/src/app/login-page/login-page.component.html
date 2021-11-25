@@ -6,38 +6,40 @@
                 <div>
                     <input class="text-center" type="text" placeholder="نام" name="nameU" id="nameU" [formControl]="nameU">  
                     <span [hidden]="nameU.valid || nameU.untouched" class="error"  dir="rtl">  
-                        <div [hidden]="!nameU.hasError('minlength')">  
+                        <div [hidden]="!nameU.hasError('minlength')" class="pb-3">
                             نام شما نمیتواند کمتر از سه حرف باشد.  
                         </div>  
-                        <div [hidden]="!nameU.hasError('required')">  
-                            نام را وارد کنید
+                        <div [hidden]="!nameU.hasError('required')" class="pb-3">  
+                            این فیلد ظروری است.
                         </div>  
                     </span>  
                 </div>
                 <div>
                     <input class="text-center" type="email" placeholder="ایمیل" name="emailU" id="emailU" [formControl]="emailU">  
                     <span [hidden]="emailU.valid || emailU.untouched" class="error" dir="rtl">  
-                        <div [hidden]="!emailU.hasError('minlength')">  
-                            ایمیل نمیتواند کمتر از چهار حرف باشد.
-                        </div>  
-                        <div [hidden]="!emailU.hasError('required')">  
-                            ایمیل را وارد کنید.
+                        <div [hidden]="!emailU.hasError('email')" class="pb-3">  
+                            ایمیل معتبر نمی باشد.
+                        </div>
+                        <div [hidden]="!emailU.hasError('required')" class="pb-3">  
+                            این فیلد ظروری است.
                         </div>  
                     </span>  
                 </div>
                 <div>
                     <input class="text-center" type="password" placeholder="پسورد" name="passwordU" id="passwordU" [formControl]="passwordU">  
                     <span [hidden]="passwordU.valid || passwordU.untouched" class="error" dir="rtl">  
-                        <div [hidden]="!passwordU.hasError('minlength')">  
+                        <div [hidden]="!passwordU.hasError('minlength')" class="pb-3">  
                             پسورد نمیتواند کمتر از چهار حرف باشد.
                         </div>  
-                        <div [hidden]="!passwordU.hasError('required')">  
-                            پسوورد را وارد کنید.
+                        <div [hidden]="!passwordU.hasError('required')" class="pb-3">  
+                            این فیلد ظروری است.
                         </div>
                         <br>
                     </span>  
                 </div>
-                <button dir="rtl" type="submit" [disabled]="!signUpForm.valid" class="submit">ثبت نام</button>  
+                <button dir="rtl" type="submit" [disabled]="!signUpForm.valid" class="submit">ثبت نام</button>
+                <div *ngIf="isLoadingU" dir="rtl" class="pt-3">منتظر بمانید ...</div>
+                <div *ngIf="signUpErr" dir="rtl" class="error pt-3">{{signUpErrContent}}</div> 
             </form>
         </div>
         <div class="form-container sign-in-container">
@@ -46,27 +48,30 @@
                 <div>
                     <input class="text-center" type="email" placeholder="ایمیل" name="emailI" id="emailI" [formControl]="emailI">
                     <span [hidden]="emailI.valid || emailI.untouched" class="error" dir="rtl">  
-                        <div [hidden]="!emailI.hasError('minlength')">  
-                            ایمیل نمیتواند کمتر از چهار حرف باشد.
-                        </div>  
-                        <div [hidden]="!emailI.hasError('required')">  
-                            ایمیل را وارد کنید.
+                        <div [hidden]="!emailI.hasError('email')" class="pb-3">  
+                            ایمیل معتبر نمی باشد.
+                        </div>
+                        <div [hidden]="!emailI.hasError('required')" class="pb-3">  
+                            این فیلد ظروری است.
                         </div>  
                     </span>  
                 </div>
                 <div>
                     <input class="text-center" type="password" placeholder="پسوورد" name="passwordI" id="passwordI" [formControl]="passwordI">  
                     <span [hidden]="passwordI.valid || passwordI.untouched" class="error" dir="rtl">  
-                        <div [hidden]="!passwordI.hasError('minlength')">  
+                        <div [hidden]="!passwordI.hasError('minlength')" class="pb-3">  
                             پسوورد نمیتواند کمتر از چهار حرف باشد.
                         </div>  
-                        <div [hidden]="!passwordI.hasError('required')">  
-                            پسوورد را وارد کنید.
+                        <div [hidden]="!passwordI.hasError('required')" class="pb-3">  
+                            این فیلد ظروری است.
                         </div>  
                     </span>  
                 </div>
-                <a href="#">پسوردتان را فراموش کردید؟</a>
-                <button type="submit" [disabled]="!signInForm.valid" class="submit" dir="rtl">ورود</button>  
+                <a href="/notFound">پسوردتان را فراموش کردید؟</a>
+                <button type="submit" [disabled]="!signInForm.valid" class="submit" dir="rtl">ورود</button> 
+                <div *ngIf="isLoadingI" dir="rtl" class="pt-3">منتظر بمانید ...</div>
+                <br>
+                <div *ngIf="signInErr" dir="rtl" class="error pt-3">{{signInErrContent}}</div> 
             </form>
         </div>
         <div class="overlay-container">

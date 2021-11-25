@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserControllerService } from '../public/controller/user-controller.service';
 
 @Component({
   selector: 'app-about-us-page',
@@ -8,9 +9,13 @@ import { Router } from '@angular/router';
 })
 export class AboutUsPageComponent implements OnInit {
 
-  constructor(private router:Router) { }
-
+  token?:string | null;
+  email?:string | null;
+  constructor(private router:Router,
+              private userContrller:UserControllerService) { }
   ngOnInit(): void {
+    this.token = localStorage.getItem("token")!;
+    this.email = localStorage.getItem("email")!;
   }
   navigate(path:string){
     this.router.navigate([path]);

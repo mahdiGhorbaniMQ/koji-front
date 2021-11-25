@@ -12,24 +12,23 @@
             <form class="mt-4 mb-4" [formGroup]="createGroupForm" (ngSubmit)="create()">
                 <div>
                     <input class="text-center" type="text" placeholder="نام گروه" name="groupName" id="groupName" [formControl]="groupName">  
-                    <span [hidden]="true" class="error"  dir="rtl">  
-                        <div [hidden]="true">  
+                    <span [hidden]="groupName.valid || groupName.untouched" class="error"  dir="rtl">  
+                        <div [hidden]="!groupName.hasError('minlength')">  
                             نام شما نمیتواند کمتر از سه حرف باشد.  
                         </div>  
-                        <div [hidden]="true">  
-                            نام را وارد کنید
+                        <div [hidden]="!groupName.hasError('required')">  
+                            این فیلد ظروری است.
                         </div>  
                     </span>  
                 </div>
                 <div dir="rtl">
-                    <!-- <label for="groupBio">در باره گروه توضیحاتی بنویسید:</label> -->
                     <textarea rows="4" cols="19" class="text-center" type="text" placeholder="درباره گروه" name="groupBio" id="groupBio" [formControl]="groupBio"></textarea>
-                    <span [hidden]="true" class="error"  dir="rtl">  
-                        <div [hidden]="true">  
+                    <span [hidden]="groupBio.valid || groupBio.untouched" class="error"  dir="rtl">  
+                        <div [hidden]="!groupBio.hasError('minlength')">  
                             نام شما نمیتواند کمتر از سه حرف باشد.  
-                        </div>  
-                        <div [hidden]="true">  
-                            نام را وارد کنید
+                        </div> 
+                        <div [hidden]="!groupBio.hasError('required')">  
+                            این فیلد ظروری است.
                         </div>  
                     </span>  
                 </div>
@@ -40,11 +39,13 @@
                       <option value="public">عمومی</option>
                     </select>
                 </div>
-                <button dir="rtl" type="submit" [disabled]="false" class="submit btn-form btn-success mb-3">ساختن</button>  
+                <button dir="rtl" type="submit" [disabled]="!createGroupForm.valid" class="submit btn-form btn-success mb-3">ساختن</button>  
+                <div class="group-link" dir="rtl">
+                    <div *ngIf="isLoading">لطفا منتظر بمانید ...</div>
+                    <div class="text-success" *ngIf="createSuccess">گروه با موفقیت ساخته شد.</div>
+                    <div class="text-danger" *ngIf="createError">مشکلی در ساختن گروه پیش آمده است.</div>
+                </div>
             </form>
-            <div class="group-link">
-
-            </div>
         </div>
     </div>
 </div>

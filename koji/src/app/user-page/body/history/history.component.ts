@@ -15,7 +15,7 @@ export class HistoryComponent implements OnInit {
 
   back(){
       this.usrePageController.setSelectedGroup(undefined);
-      this.router.navigate([""]);
+      this.router.navigate(["/user/home"]);
   }
 
 }

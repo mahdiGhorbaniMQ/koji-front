@@ -1,10 +1,14 @@
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark" س dir="rtl">
   <div class="container-fluid">
+    
     <a class="navbar-brand" href="">
       <img src="../../../assets/logo.jpeg" alt="لوگو" style="width:40px;" class="rounded-pill">
       <span class="h3 m-4">کجی</span>
     </a>
-    <button class="btn btn-info" (click)="navigate('login')">ورود</button>
+    <div>
+      <button class="btn btn-info" style="margin-left: 1em;" (click)="navigate('user')" *ngIf="token">برو به اکانت خودم</button>  
+      <button class="btn btn-info" (click)="navigate('login')">ورود</button>
+    </div>
   </div>
 </nav> 
 
@@ -65,10 +69,11 @@
 
   <div class="row bg-dark text-white p-5" dir="ltr">
     <div class="container text-center">
-      <p><strong>creator: </strong>felan felan</p>
+      <p><strong>creators: </strong>mehty, alireza, iman</p>
       <p><strong class="h4">connections</strong></p>
       <p><strong>email: </strong>felan@gmail.com</p>
-      <p><strong>github: </strong>www.github.com/khoramism/koji</p>
+      <p><strong>github for backend: </strong><a href="https://www.github.com/khoramism/koji">www.github.com/khoramism/koji</a></p>
+      <p><strong>github for frontend: </strong><a href="https://www.github.com/MahdiGhorbaniMQ/koji-front">www.github.com/MahdiGhorbaniMQ/koji-front</a></p>
       <p><strong>linkedIn: </strong>www.linkedin.com/in/felan</p>
     </div>
   </div>

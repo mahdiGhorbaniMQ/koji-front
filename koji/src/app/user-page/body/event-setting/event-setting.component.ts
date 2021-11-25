@@ -16,6 +16,6 @@ export class EventSettingComponent implements OnInit {
 
   back(){
     this.usrePageController.setSelectedGroup(undefined);
-    this.router.navigate(["user/home"]);
+    this.router.navigate(["/user/home"]);
   }
 }

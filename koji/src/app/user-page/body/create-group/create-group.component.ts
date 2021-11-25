@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BackendAPIService } from 'src/app/public/backendAPI/backend-api.service';
 import { UserControllerService } from 'src/app/public/controller/user-controller.service';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
+import { UserInformationService } from 'src/app/public/information/user-information.service';
 
 @Component({
   selector: 'app-create-group',
@@ -21,18 +22,27 @@ export class CreateGroupComponent implements OnInit {
     groupBio:"",
     groupType:"private"
   }
+
+  createSuccess:boolean=false;
+  createError:boolean=false;
+
+  isLoading:boolean=false;
+  
   constructor(private usrePageController:UserPageControllerService,
               private router:Router,
               private builder: FormBuilder,
-              private backendAPI:BackendAPIService,
-              private userController:UserControllerService) { }
+              private backendAPI: BackendAPIService,
+              private userInformation: UserInformationService,
+              private userController: UserControllerService) { }
 
   ngOnInit(): void {
     this.groupName= new FormControl(this.createGroupData.groupName, [
       Validators.required,
+      Validators.minLength(3)
     ]);
     this.groupBio= new FormControl(this.createGroupData.groupBio, [
       Validators.required,
+      Validators.minLength(3)
     ]);
     this.groupType= new FormControl(this.createGroupData.groupType, [
       Validators.required,
@@ -49,6 +59,20 @@ export class CreateGroupComponent implements OnInit {
     this.router.navigate(["user/home"]);
   }
   create(){
-
+    this.isLoading = true;
+    this.backendAPI.createGroup(this.groupName.value,this.groupBio.value,[]).subscribe(
+      (Response:any)=>{
+        this.isLoading = false;
+        this.createSuccess = true;
+        this.createError = false;
+      },
+      (error:any)=>{
+        this.isLoading = false;
+        this.createSuccess = false;
+        this.createError = true;
+      }
+    )
+  }
+  navigate(endpoint:string){
   }
 }

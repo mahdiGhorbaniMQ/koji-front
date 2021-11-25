@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
-import { UserInformationService } from 'src/app/public/information/user-information.service';
 import { ConditionsModel } from 'src/app/public/models/conditions-model';
 import { EventModel } from 'src/app/public/models/event-model';
 import { EventControllerService } from './controller/event-controller.service';
@@ -23,51 +22,52 @@ export class EventComponent implements OnInit {
 
   state:number=1;
 
-  places:{title:string,selected?:boolean}[]=[];
-  dates:{title:string,selected?:boolean}[]=[];
-
-  finalCondition!:ConditionsModel;
-  
+  places:{title:string,selected:boolean}[]=[];
+  dates:{title:string,selected:boolean}[]=[];
+  datesMap!:Map<number,string>;
+  placesMap!:Map<number,string>;
+  userDates:string[]=[];
+  userPlaces:string[]=[];
   constructor(private userPageController:UserPageControllerService,
               private eventController:EventControllerService,
-              private router:Router,
-              private userInformation:UserInformationService) { }
+              private router:Router) { }
 
   ngOnInit(): void {
     this.eventController.setEventData()
     this.selectedEvent=this.userPageController.getSelectedEvent()!;
-
-    this.setEventPlaces();
-    this.setEventDates();
-    this.setFinalCondition();
-  }
-  setEventPlaces(){
-    this.selectedEvent.conditions?.forEach(condition => {
-      if (condition.user=="creator" && condition.condition.placeName)
-        this.places = condition.condition.placeName;
-    });
-    console.log(this.places)
-  }
-  setEventDates(){
-    this.selectedEvent.conditions?.forEach(condition => {
-      if (condition.user=="creator" && condition.condition.localDate)
-        this.dates = condition.condition.localDate;
-    });
-  }
-  setFinalCondition(){
-    this.selectedEvent.conditions?.forEach(condition => {
-      if (condition.user=="final" && condition.condition.placeName)
-      this.finalCondition = condition.condition;
-    });
+    this.places=this.selectedEvent.conditions?.get("سازنده")?.placeName!;
+    this.dates=this.selectedEvent.conditions?.get("سازنده")?.localDate!;
   }
   changeDateItemState(index:number){
+    // if(this.datesMap.has(index)){
+    //   this.datesMap.delete(index);
+    //   this.dates[index].selected=false;
+    // }
+    // else{
+    //   this.datesMap.set(index,this.dates[index].title);
+    //   this.dates[index].selected=true;
+    // }
     this.dates[index].selected=!this.dates[index].selected;
   }
   changePlaceItemState(index:number){
+    // if(this.placesMap.has(index)){
+    //   this.placesMap.delete(index);
+    //   this.places[index].selected=false;
+    // }
+    // else{
+    //   this.placesMap.set(index,this.places[index].title);
+    //   this.places[index].selected=true;
+    // }
     this.places[index].selected=!this.places[index].selected;
   }
   setUserConditions(){
-    this.selectedEvent.conditions?.push({user:this.userInformation.userData.name,condition:{placeName:this.places,localDate:this.dates,state:this.state}})
+    // this.datesMap.forEach((value,key) => {
+    //   this.userDates.push(value);
+    // });
+    // this.placesMap.forEach((value,key) => {
+    //   this.userPlaces.push(value);
+    // });
+    this.selectedEvent.conditions?.set("شما",{placeName:this.places,localDate:this.dates,state:this.state})
   }
   back(){
     this.router.navigate(["user/group"])

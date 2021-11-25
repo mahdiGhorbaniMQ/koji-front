@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { NotFoundComponent } from './not-found/not-found/not-found.component';
 import { UserPageComponent } from './user-page/user-page.component';
 
 const routes: Routes = [
@@ -19,6 +20,12 @@ const routes: Routes = [
     path: "user",
     component: UserPageComponent,
     loadChildren: () => import('./user-page/user-page.module').then(m => m.UserPageModule)
+
+  },
+  {
+    path: "notFound",
+    component: NotFoundComponent,
+    loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule)
 
   },
 ];

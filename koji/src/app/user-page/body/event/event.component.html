@@ -5,7 +5,7 @@
                 <button class="btn bg-dark text-white rounded-pill h6" (click)="back()">
                     >
                 </button>
-                <button *ngIf="true" class="btn btn-dark text-white ounded-pill h6" (click)="navigate('user/group/profile')">?</button>
+                <button *ngIf="false" class="btn btn-dark text-white ounded-pill h6" (click)="navigate('user/group/profile')">?</button>
             </div>
             <p class="text-center h2">{{selectedEvent.title}}</p>
             <p class="text-center h4">{{selectedEvent.desceriptions}}</p>
@@ -43,7 +43,7 @@
                     <hr>
                     <form (ngSubmit)="setUserConditions()">
                         <div *ngIf="state==1">
-                            <div class="mb-3" *ngIf="places[0]">
+                            <div class="mb-3">
                                 <label for="place" class="h5">مکان هایی که میتوانید را انتخاب کنید</label><br>
                                 <br><br>
                                 <div class="places-container">
@@ -52,8 +52,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr *ngIf="places[0]">
-                            <div class="mb-3" *ngIf="dates[0]">
+                            <hr>
+                            <div class="mb-3">
                                 <label for="date" class="h5">تاریخ هایی که میتوانید را انتخاب کنید</label><br>   
                                 <br><br>
                                 <div class="dates-container">
@@ -62,7 +62,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr *ngIf="dates[0]">
+                            <hr>
                         </div>
                         <div class="mb-3 h5">
                             <input type="radio" value="1" name="state" id="state1" [(ngModel)]="state" checked>
@@ -81,34 +81,13 @@
                     *ngIf="selectedItem=='all'"
                     class="all-conditions h5"
                 >
-                    <div *ngFor="let conditions of selectedEvent.conditions">
-                        <div [ngSwitch]="conditions.condition.state" class="bg-dark" style="border-radius: 15px;">
-                            <div *ngSwitchCase="1" class="text-white p-3 mb-5">
-                                <p class="h3">{{conditions.user}}:</p> فقط با شرایط زیر هستش
-                                <div class="mb-3" *ngIf="conditions.condition.placeName![0]">
-                                    <br>
-                                    <div class="places-container">
-                                        <div class="place-item p-3" [ngClass]="{'bg-success':place.selected,'bg-danger':!place.selected}" *ngFor="let place of conditions.condition.placeName;let i=index">
-                                            <span class="p-3 text-white">{{place.title}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3" *ngIf="conditions.condition.localDate![0]">
-                                    <br>
-                                    <div class="dates-container">
-                                        <div class="dates-item p-3" [ngClass]="{'bg-success':date.selected,'bg-danger':!date.selected}" *ngFor="let date of conditions.condition.localDate;let i=index">
-                                            <span class="p-3 text-white">{{date.title}}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div *ngSwitchCase="2" class="mb-5 p-5 text-white">
-                                <p class="h3">{{conditions.user}}:</p> همه جوره هستش
-                            </div>
-                            <div *ngSwitchCase="3" class="mb-5 p-5 text-white">
-                                <p class="h3">{{conditions.user}}:</p> کلا نیستش
-                            </div>
-                        </div>
+                    <div *ngFor="let conditions of selectedEvent.conditions | keyvalue">
+                        {{conditions.key}}: 
+                        <br>
+                        {{conditions.value.placeName[0].title}}
+                        <br>
+                        {{conditions.value.localDate[0].title}}
+                        <hr>
                     </div>
                 </div>
                 <div
@@ -116,9 +95,9 @@
                     *ngIf="selectedItem=='final'"
                     class="final-conditions text-center h2"
                 >
-                {{finalCondition!.placeName![0].title}}
+                {{selectedEvent.finalConditions!.placeName[0].title}}
                 <hr>
-                {{finalCondition!.localDate![0].title}}
+                {{selectedEvent.finalConditions!.localDate[0].title}}
                 <hr>
                 </div>
             </div>
