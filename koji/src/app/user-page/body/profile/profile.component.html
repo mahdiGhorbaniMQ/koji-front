@@ -5,6 +5,24 @@
                 <button class="btn btn-back-container btn-dark text-white rounded-pill h6" (click)="back()">
                     <
                 </button>
+                پروفایل شما
+            </div>
+            <div class="body text-center h4 pt-4" dir="rtl">
+                
+                <p>نام: <span>{{userData.name}}</span></p>
+                <p>ایمیل: <span>{{userData.email}}</span></p>
+                
+                <button class="btn btn-info m-3 row" style="width: 200px;" (click)="updateAcc()" id="updateAcc">بروز رسانی پروفایل</button><br>
+
+                <button class="btn btn-success m-3 row" style="width: 200px;" (click)="login()" id="login">ورود با اکانتی دیگر</button><br>
+                <p style="color:red" class="h6" *ngIf="loginAlert">اگر مطمئن هستید روی گزینه دابل کلیک کنید</p>
+              
+                <button class="btn btn-warning m-3 row" style="width: 200px;" (click)="signOut()" id="signOut">خارج شدن از اکانت</button><br>
+                <p style="color:red" class="h6" *ngIf="signOutAlert">اگر مطمئن هستید روی گزینه دابل کلیک کنید</p>
+               
+                <button class="btn btn-danger m-3 row" style="width: 200px;" (click)="delete()" id="delete">حذف اکانت</button>
+                <p style="color:red" class="h6" *ngIf="deleteAlert">اگر مطمئن هستید روی گزینه دابل کلیک کنید</p>
+
             </div>
         </div>
     </div>    

@@ -31,17 +31,28 @@ export class BackendAPIService {
     return this.http.get(this.apiUrl+"/user/"+email+"/detail")
   }
 
-  updateAcount(lastEmail:string,user:UserModel):any{
-    var name = user.name;
-    var email = user.email;
+  updateAcount(lastEmail:string,email:string,name:string):any{
     var reqBody = {
       "email" : email,
-      "name" : name      
+      "name" : name,
     }
-    return this.http.put(this.apiUrl+"/user"+lastEmail+"/update",reqBody);
+    var token = localStorage.getItem("token");
+
+    var httpOptions = {
+      headers: new HttpHeaders({ 
+      'Authorization': 'Token '+token })
+    };
+    return this.http.put(this.apiUrl+"/user/"+lastEmail+"/update",reqBody,httpOptions);
   }
   deleteAcount(email:string){
-    return this.http.delete(this.apiUrl+"/user/"+email+"/delete");
+
+    var token = localStorage.getItem("token");
+
+    var httpOptions = {
+      headers: new HttpHeaders({ 
+      'Authorization': 'Token '+token })
+    };
+    return this.http.delete(this.apiUrl+"/user/"+email+"/delete",httpOptions);
   }
 
 
@@ -67,6 +78,17 @@ export class BackendAPIService {
     };
     
     return this.http.post(this.apiUrl+"/team/create/",reqBody,httpOptions);
+  }
+  deleteGroup(id:string):any{
+    
+    var token = localStorage.getItem("token");
+
+    var httpOptions = {
+      headers: new HttpHeaders({ 
+      'Authorization': 'Token '+token })
+    };
+    
+    return this.http.delete(this.apiUrl+"/team/"+id+"/delete/",httpOptions);
   }
 
   sendUserConditions(conditions:ConditionsModel):any{

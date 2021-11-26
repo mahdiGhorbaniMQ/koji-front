@@ -31,14 +31,21 @@ export class UserHomeComponent implements OnInit {
       (data:any) => {        
         this.userInformation.userData.groups=[];
         this.userInformation.userData.name = data.name;
+        this.userInformation.userData.email = data.email;
         data.teams.forEach((team:any) => {
-          this.userInformation.userData.groups.push({
+          var group:GroupModel = {
             name: team.name,
             link: team.invite_id,
-            bio: team.creator.bio,
+            bio: team.bio,
             creator: team.creator.email,
-            users:[]
-          })
+            id: team.id,
+            users: []
+          }
+          team.users.forEach((item:any) => {
+            var user = {name:item.name,email:item.email};
+            group.users.push(user);
+          });
+          this.userInformation.userData.groups.push(group);
           this.userGroups = this.userInformation.userData.groups;
         });
       },

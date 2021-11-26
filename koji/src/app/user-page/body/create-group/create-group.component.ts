@@ -62,13 +62,13 @@ export class CreateGroupComponent implements OnInit {
   }
   create(){
     this.isLoading = true;
-    this.backendAPI.createGroup(this.groupName.value,this.groupBio.value,["2"]).subscribe(
+    this.backendAPI.createGroup(this.groupName.value,this.groupBio.value,[]).subscribe(
       (Response:any)=>{
         this.isLoading = false;
         this.createSuccess = true;
         this.createError = false;
         setTimeout(() => {
-          this.goHome()
+          this.goHome();
         }, 1500);
       },
       (error:any)=>{
@@ -79,6 +79,7 @@ export class CreateGroupComponent implements OnInit {
     )
   }
   goHome(){
+    this.userInformation.userData.name="";
     this.router.navigate(["/user/home"]);
   }
 }

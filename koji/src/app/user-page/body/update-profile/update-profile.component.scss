@@ -1,4 +1,4 @@
-.profile-container{
+.update-profile-container{
     position: absolute;
     display: flex;
     justify-content: center;
@@ -6,7 +6,7 @@
     width: 100%;
     height: 100%;
 }
-.profile{
+.update-profile{
     border-radius: 15px;
     box-shadow: 2px 2px 10px rgb(61, 61, 61) ,-2px -2px 10px rgb(61, 61, 61);
     position: absolute;
@@ -33,7 +33,9 @@
     right: 5px;
     top: 40px;
 }
-
+.error{
+    color: red;
+}
 
 
 .light{
@@ -42,7 +44,7 @@
         color: #000;
         border-color: rgb(189, 142, 142);
     }
-    .profile{
+    .update-profile{
         box-shadow: 2px 2px 5px rgb(172, 172, 172) ,-2px -2px 5px rgb(172, 172, 172);
         // background-color: rgba(63, 63, 63, 0.719);
         background-color: rgba(207, 204, 204, 0.719);
@@ -59,7 +61,7 @@
         color: #ffffff;
         border-color: rgb(9, 95, 110);
     }
-    .profile{
+    .update-profile{
         box-shadow: 2px 2px 5px rgb(172, 172, 172) ,-2px -2px 5px rgb(172, 172, 172);
         background-color: rgba(88, 88, 88, 0.719);
         color: #fff;
@@ -74,7 +76,7 @@
         color: black;
         border-color: rgb(30, 162, 185);
     }
-    .profile{
+    .update-profile{
         background-color: rgba(172, 166, 209, 0.719);
         color: #000;
     }

@@ -48,6 +48,7 @@
 .defult{
     .nav-bar{
         background-color: rgb(9, 95, 110);
+        color: #fff;
     }
     .image-container{
         border-bottom: 2px solid yellow;
@@ -81,13 +82,16 @@
     }
     .option-item{
         background-color: rgb(9, 95, 110);
-        color: #ffffff;
+        color: #fff;
     }
 }
 .fantasy{
     .nav-bar{
-        background-color: rgb(143, 67, 120);
+        background-color: rgb(208, 166, 209);
         color: black;
+        button{
+            background-color: rgb(67, 100, 143);
+        }
     }
     .image-container{
         border-bottom: 2px solid black;

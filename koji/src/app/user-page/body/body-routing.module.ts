@@ -12,6 +12,7 @@ import { HistoryComponent } from './history/history.component';
 import { JoinGroupComponent } from './join-group/join-group.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SiteSettingComponent } from './site-setting/site-setting.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
 import { UserHomeComponent } from './user-home/user-home.component';
 
 
@@ -40,6 +41,11 @@ const routes: Routes = [
     path: "profile",
     component: ProfileComponent,
     loadChildren: () => import('./profile/profile.module').then(m => m.ProfileModule)
+  },
+  {
+    path: "updateAcc",
+    component: UpdateProfileComponent,
+    loadChildren: () => import('./update-profile/update-profile.module').then(m => m.UpdateProfileModule)
   },
   {
     path: "setting",

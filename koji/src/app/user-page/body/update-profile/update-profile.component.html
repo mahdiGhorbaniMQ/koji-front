@@ -1,0 +1,42 @@
+<div [class]="userPageInformation.theme">
+    <div class="update-profile-container">
+        <div class="update-profile">
+            <div class="h2 text-right header" dir="rtl">
+                <button class="btn btn-back-container btn-dark text-white rounded-pill h6" (click)="back()">
+                    <
+                </button>
+                پروفایل شما
+            </div>
+            <div class="body text-center h4 pt-4" dir="rtl">
+                <form [formGroup]="updateForm" (ngSubmit)="update()">
+                    <p class="h4" dir="rtl">بروزرسانی پروفایل</p>
+                    <div class="m-3">
+                        <input class="text-center" type="text" placeholder="نام" name="name" id="name" [formControl]="name">  
+                        <span [hidden]="name.valid || name.untouched" class="error"  dir="rtl">  
+                            <div [hidden]="!name.hasError('minlength')">
+                                نام شما نمیتواند کمتر از سه حرف باشد.  
+                            </div>  
+                            <div [hidden]="!name.hasError('required')">  
+                                این فیلد ضروری است.
+                            </div>  
+                        </span>  
+                    </div>
+                    <div class="m-3">
+                        <input class="text-center" type="email" placeholder="ایمیل" name="email" id="email" [formControl]="email">  
+                        <span [hidden]="email.valid || email.untouched" class="error" dir="rtl">  
+                            <div [hidden]="!email.hasError('email')">  
+                                ایمیل معتبر نمی باشد.
+                            </div>
+                            <div [hidden]="!email.hasError('required')">  
+                                این فیلد ضروری است.
+                            </div>  
+                        </span>  
+                    </div>
+                    <button dir="rtl" type="submit" [disabled]="!updateForm.valid" class="submit btn btn-info">بروزرسانی</button>
+                    <div *ngIf="isLoading" dir="rtl" class="pt-3">منتظر بمانید ...</div>
+                    <div *ngIf="updateErr" dir="rtl" class="error pt-3">{{updateErrContent}}</div> 
+                </form>
+            </div>
+        </div>
+    </div>    
+</div>

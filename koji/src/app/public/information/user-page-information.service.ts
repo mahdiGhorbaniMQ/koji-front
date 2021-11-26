@@ -10,7 +10,7 @@ export class UserPageInformationService {
   selectedGroup:GroupModel | undefined;
   selectedEvent:EventModel | undefined;
   emptyEvent:EventModel= {title:"",desceriptions:"",creator:"",status:"",locationLink:""};
-  emptygroup:GroupModel={name:"",creator:"",link:"",users:[],events:[]}
+  emptygroup:GroupModel={name:"",creator:"",link:"",users:[],events:[],id:""}
   headerStyle:StyleModel={};
   bodyStyle:StyleModel={};
   navBarStyle:StyleModel={};

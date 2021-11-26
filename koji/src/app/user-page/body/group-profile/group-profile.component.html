@@ -2,9 +2,29 @@
     <div class="group-profile-container">
         <div class="group-profile">
             <div class="h2 text-right header" dir="rtl">
-                <button class="btn btn-back-container btn-dark text-white rounded-pill h6" (click)="back()">
-                    <
-                </button>
+                <div class="button-panle p-3">
+                    <button class="btn btn-dark text-white rounded-pill h6" (click)="back()">
+                        <
+                    </button>
+                    <button *ngIf="userIsAddmin" class="btn btn-dark text-white ounded-pill h6" (click)="deleteGroup()">حذف</button>
+                </div>
+                <div class="text-center detail">
+                    <p class="h1 mb-4">{{selectedGroup.name}}</p>
+                    <p class="h4">{{selectedGroup.bio}}</p>
+                </div>
+            </div>
+            <div class="body">
+                <div dir="rtl" class="link">
+                    لینک گروه: {{selectedGroup.link}}
+                </div>
+                <div dir="rtl" 
+                    *ngFor="let user of selectedGroup.users"
+                    class="user"
+                    >
+                    <span class="h4">نام کاربر: </span><span class="h5 p-3"> {{user.name}} </span>
+                    <!-- <span class="h4 p-3">ایمیل کاربر: </span><span class="h5"> {{user.email}}</span> -->
+                    <div class="h6 m-3 bg-danger text-white rounded-pill owner" *ngIf="selectedGroup.creator==user.email">سازنده</div>
+                </div>
             </div>
         </div>
     </div>    

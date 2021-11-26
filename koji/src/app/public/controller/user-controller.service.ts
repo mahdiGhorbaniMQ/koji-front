@@ -18,19 +18,29 @@ export class UserControllerService {
     return this.userInformation.userData.groups;
   }
   fillUserData(email:string){
+
+
     this.backendAPI.getUserData(email)
     .subscribe(
-      (data:any) => {
+      (data:any) => {        
+        this.userInformation.userData.groups=[];
         this.userInformation.userData.name = data.name;
-        this.userInformation.userData.groups = [];
+        this.userInformation.userData.email = data.email;
         data.teams.forEach((team:any) => {
-          this.userInformation.userData.groups.push({
+          var group:GroupModel = {
             name: team.name,
             link: team.invite_id,
-            users:[]
-          })
+            bio: team.creator.bio,
+            creator: team.email,
+            id: team.id,
+            users: []
+          }
+          team.users.forEach((item:any) => {
+            var user = {name:item.name,email:item.email};
+            group.users.push(user);
+          });
+          this.userInformation.userData.groups.push(group);
         });
-        this.router.navigate(["/user/home"]);
       },
       (error:Error) => console.log(error)
     )
@@ -45,7 +55,28 @@ export class UserControllerService {
       (error:Error) => console.log(error)
     )
   }
-
+  deleteUserAccount(){
+    this.backendAPI.deleteAcount(localStorage.getItem("email")!).subscribe(
+      (data:any)=>{
+        localStorage.removeItem("token");
+        localStorage.removeItem("email");
+        this.router.navigate(["/"]);
+      },
+      (error:any)=>{console.log(error)}
+      )
+  }
+  updateUserAccount(name:string,email:string){
+    this.backendAPI.updateAcount(this.userInformation.userData.email,email,name).subscribe(
+      (response:any)=>{
+        localStorage.setItem("email",email);
+        this.userInformation.userData.name="";
+        this.router.navigate(["/user/home"]);
+      },
+      (err:any)=>{
+        console.log(err)
+      }
+    )
+  }
   getUserData():UserModel{
     return this.userInformation.userData;
   }

@@ -42,10 +42,7 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private builder: FormBuilder,
               private router:Router,
-              private backendAPI:BackendAPIService,
-              private userController:UserControllerService,
-              private userPageController:UserPageControllerService,
-              private http:HttpClient) { }
+              private backendAPI:BackendAPIService) { }
 
   ngOnInit(): void {
     this.nameU= new FormControl(this.signUpData.name, [
