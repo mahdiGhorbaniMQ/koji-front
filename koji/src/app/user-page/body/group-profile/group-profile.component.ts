@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
+import { UserPageInformationService } from 'src/app/public/information/user-page-information.service';
 
 @Component({
   selector: 'app-group-profile',
@@ -10,7 +11,8 @@ import { UserPageControllerService } from 'src/app/public/controller/user-page-c
 export class GroupProfileComponent implements OnInit {
 
   constructor(private usrePageController:UserPageControllerService,
-              private router:Router) { }
+              private router:Router,
+              public userPageInformation:UserPageInformationService) { }
   ngOnInit(): void {}
 
   back(){

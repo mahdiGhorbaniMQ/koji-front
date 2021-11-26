@@ -45,3 +45,55 @@
     width: 90%;
     height: 50px;
 }
+.defult{
+    .nav-bar{
+        background-color: rgb(9, 95, 110);
+    }
+    .image-container{
+        border-bottom: 2px solid yellow;
+    }
+    .option-item{
+
+    }
+}
+.light{
+    .nav-bar{
+        background-color: rgb(224, 224, 224);
+    }
+    .image-container{
+        border-bottom: 2px solid black;
+    }
+    .option-item{
+        background-color: rgb(189, 142, 142);
+        color: #000;
+    }
+}
+.derakula{
+    .nav-bar-container{
+        box-shadow: 2px 0 10px rgb(219, 218, 218);
+    }
+    .nav-bar{
+        background-color: rgb(39, 42, 43);
+        color: white;
+    }
+    .image-container{
+        border-bottom: 2px solid yellow;
+    }
+    .option-item{
+        background-color: rgb(9, 95, 110);
+        color: #ffffff;
+    }
+}
+.fantasy{
+    .nav-bar{
+        background-color: rgb(143, 67, 120);
+        color: black;
+    }
+    .image-container{
+        border-bottom: 2px solid black;
+    }
+    .option-item{
+        background-color: rgb(30, 162, 185);
+        color: black;
+    }
+}

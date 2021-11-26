@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
+import { UserPageInformationService } from 'src/app/public/information/user-page-information.service';
 import { ConditionsModel } from 'src/app/public/models/conditions-model';
 import { EventModel } from 'src/app/public/models/event-model';
 import { EventControllerService } from './controller/event-controller.service';
@@ -29,6 +30,7 @@ export class EventComponent implements OnInit {
   userDates:string[]=[];
   userPlaces:string[]=[];
   constructor(private userPageController:UserPageControllerService,
+              public userPageInformation:UserPageInformationService,
               private eventController:EventControllerService,
               private router:Router) { }
 

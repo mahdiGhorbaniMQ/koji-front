@@ -1,106 +1,108 @@
-<div class="event-container">
-    <div class="event">
-        <div class="header">
-            <div class="button-panle p-3">
-                <button class="btn bg-dark text-white rounded-pill h6" (click)="back()">
+<div [class]="userPageInformation.theme">
+    <div class="event-container">
+        <div class="event">
+            <div class="header">
+                <div class="button-panle p-3">
+                    <button class="btn btn-dark text-white rounded-pill h6" (click)="back()">
+                        >
+                    </button>
+                    <button *ngIf="false" class="btn btn-dark text-white ounded-pill h6" (click)="navigate('user/group/profile')">?</button>
+                </div>
+                <p class="text-center h2">{{selectedEvent.title}}</p>
+                <p class="text-center h4">{{selectedEvent.desceriptions}}</p>
+            </div>
+            <div class="body">
+                <div class="navigate-panel">
+                    <div 
+                        class="navigate-item"
+                        [ngClass]="{'selected':selectedItem=='user'}"
+                        (click)="selectedItem='user'"
                     >
-                </button>
-                <button *ngIf="false" class="btn btn-dark text-white ounded-pill h6" (click)="navigate('user/group/profile')">?</button>
-            </div>
-            <p class="text-center h2">{{selectedEvent.title}}</p>
-            <p class="text-center h4">{{selectedEvent.desceriptions}}</p>
-        </div>
-        <div class="body">
-            <div class="navigate-panel">
-                <div 
-                    class="navigate-item"
-                    [ngClass]="{'selected':selectedItem=='user'}"
-                    (click)="selectedItem='user'"
-                >
-                    شرایط شما
-                </div>
-                <div
-                    class="navigate-item"
-                    [ngClass]="{'selected':selectedItem=='all'}"
-                    (click)="selectedItem='all'"
-                >
-                    شرایط بقیه افراد
-                </div>
-                <div
-                    class="navigate-item"
-                    [ngClass]="{'selected':selectedItem=='final'}"
-                    (click)="selectedItem='final'"    
-                >
-                    شرایط نهایی
-                </div>
-            </div>
-            <div class="conditions-container" >
-                <div
-                    dir="rtl"
-                    *ngIf="selectedItem=='user'"
-                    class="user-conditions">
-                    <h1>شرایط شما</h1>
-                    <hr>
-                    <form (ngSubmit)="setUserConditions()">
-                        <div *ngIf="state==1">
-                            <div class="mb-3">
-                                <label for="place" class="h5">مکان هایی که میتوانید را انتخاب کنید</label><br>
-                                <br><br>
-                                <div class="places-container">
-                                    <div class="place-item p-3" (click)="changePlaceItemState(i)" [ngClass]="{'bg-success':place.selected,'bg-danger':!place.selected}" *ngFor="let place of places;let i=index">
-                                        <span class="p-3 text-white">{{place.title}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="mb-3">
-                                <label for="date" class="h5">تاریخ هایی که میتوانید را انتخاب کنید</label><br>   
-                                <br><br>
-                                <div class="dates-container">
-                                    <div class="dates-item p-3" (click)="changeDateItemState(i)" [ngClass]="{'bg-success':date.selected,'bg-danger':!date.selected}" *ngFor="let date of dates;let i=index">
-                                        <span class="p-3 text-white">{{date.title}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                        </div>
-                        <div class="mb-3 h5">
-                            <input type="radio" value="1" name="state" id="state1" [(ngModel)]="state" checked>
-                            <label for="state1">فقط با شرایط بالا هستم</label><br>
-                            <input type="radio" value="2" name="state" id="state2" [(ngModel)]="state">
-                            <label for="state2">همه جوره هستم</label><br>
-                            <input type="radio" value="3" name="state" id="state3" [(ngModel)]="state">
-                            <label for="state3">کلا نیستم</label><br>
-                        </div>
-                        <hr>
-                        <button type="submit" class="submit btn btn-danger">ثبت شرایط</button>
-                    </form>
-                </div>
-                <div
-                    dir="rtl"
-                    *ngIf="selectedItem=='all'"
-                    class="all-conditions h5"
-                >
-                    <div *ngFor="let conditions of selectedEvent.conditions | keyvalue">
-                        {{conditions.key}}: 
-                        <br>
-                        {{conditions.value.placeName[0].title}}
-                        <br>
-                        {{conditions.value.localDate[0].title}}
-                        <hr>
+                        شرایط شما
+                    </div>
+                    <div
+                        class="navigate-item"
+                        [ngClass]="{'selected':selectedItem=='all'}"
+                        (click)="selectedItem='all'"
+                    >
+                        شرایط بقیه افراد
+                    </div>
+                    <div
+                        class="navigate-item"
+                        [ngClass]="{'selected':selectedItem=='final'}"
+                        (click)="selectedItem='final'"    
+                    >
+                        شرایط نهایی
                     </div>
                 </div>
-                <div
-                    dir="rtl"
-                    *ngIf="selectedItem=='final'"
-                    class="final-conditions text-center h2"
-                >
-                {{selectedEvent.finalConditions!.placeName[0].title}}
-                <hr>
-                {{selectedEvent.finalConditions!.localDate[0].title}}
-                <hr>
+                <div class="conditions-container" >
+                    <div
+                        dir="rtl"
+                        *ngIf="selectedItem=='user'"
+                        class="user-conditions">
+                        <h1>شرایط شما</h1>
+                        <hr>
+                        <form (ngSubmit)="setUserConditions()">
+                            <div *ngIf="state==1">
+                                <div class="mb-3">
+                                    <label for="place" class="h5">مکان هایی که میتوانید را انتخاب کنید</label><br>
+                                    <br><br>
+                                    <div class="places-container">
+                                        <div class="place-item p-3" (click)="changePlaceItemState(i)" [ngClass]="{'bg-success':place.selected,'bg-danger':!place.selected}" *ngFor="let place of places;let i=index">
+                                            <span class="p-3 text-white">{{place.title}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="mb-3">
+                                    <label for="date" class="h5">تاریخ هایی که میتوانید را انتخاب کنید</label><br>   
+                                    <br><br>
+                                    <div class="dates-container">
+                                        <div class="dates-item p-3" (click)="changeDateItemState(i)" [ngClass]="{'bg-success':date.selected,'bg-danger':!date.selected}" *ngFor="let date of dates;let i=index">
+                                            <span class="p-3 text-white">{{date.title}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="mb-3 h5">
+                                <input type="radio" value="1" name="state" id="state1" [(ngModel)]="state" checked>
+                                <label for="state1">فقط با شرایط بالا هستم</label><br>
+                                <input type="radio" value="2" name="state" id="state2" [(ngModel)]="state">
+                                <label for="state2">همه جوره هستم</label><br>
+                                <input type="radio" value="3" name="state" id="state3" [(ngModel)]="state">
+                                <label for="state3">کلا نیستم</label><br>
+                            </div>
+                            <hr>
+                            <button type="submit" class="submit btn btn-danger">ثبت شرایط</button>
+                        </form>
+                    </div>
+                    <div
+                        dir="rtl"
+                        *ngIf="selectedItem=='all'"
+                        class="all-conditions h5"
+                    >
+                        <div *ngFor="let conditions of selectedEvent.conditions | keyvalue">
+                            {{conditions.key}}: 
+                            <br>
+                            {{conditions.value.placeName[0].title}}
+                            <br>
+                            {{conditions.value.localDate[0].title}}
+                            <hr>
+                        </div>
+                    </div>
+                    <div
+                        dir="rtl"
+                        *ngIf="selectedItem=='final'"
+                        class="final-conditions text-center h2"
+                    >
+                    {{selectedEvent.finalConditions!.placeName[0].title}}
+                    <hr>
+                    {{selectedEvent.finalConditions!.localDate[0].title}}
+                    <hr>
+                    </div>
                 </div>
-            </div>
-        </div> 
-    </div>
+            </div> 
+        </div>
+    </div>    
 </div>

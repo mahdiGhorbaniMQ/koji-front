@@ -12,6 +12,7 @@ import { UserModel } from 'src/app/public/models/user-model';
 })
 export class NavBarComponent implements OnInit {
   userData!:UserModel;
+  // theme:string="light"
   constructor(private userPageController:UserPageControllerService,
               public userPageInformation:UserPageInformationService,
               private userController:UserControllerService,

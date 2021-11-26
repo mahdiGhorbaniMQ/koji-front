@@ -1,15 +1,17 @@
-<div class="home-container">
-    <div class="home">
-        <div class="h2 text-center header">
-            <div class=""> گروه های شما</div>
-        </div>
-        <div 
-            dir="rtl"
-            *ngFor="let group of userGroups" 
-            class="group"
-            (click)="selectGroup(group)"
-        >
-            <span class="h4">نام گروه: </span><span class="h5 p-3">{{group.name}}</span>
+<div [class]="userPageInformation.theme">
+    <div class="home-container">
+        <div class="home">
+            <div class="h2 text-center header">
+                <div class=""> گروه های شما</div>
+            </div>
+            <div 
+                dir="rtl"
+                *ngFor="let group of userGroups" 
+                class="group"
+                (click)="selectGroup(group)"
+            >
+                <span class="h4">نام گروه: </span><span class="h5 p-3">{{group.name}}</span>
+            </div>
         </div>
     </div>
 </div>

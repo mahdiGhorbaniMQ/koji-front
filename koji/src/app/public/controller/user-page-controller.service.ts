@@ -61,4 +61,9 @@ export class UserPageControllerService {
         this.information.showMenu=false;
     }
   }
+
+  setSiteTheme(){
+    var theme = localStorage.getItem("theme")!;
+    this.information.theme = theme;
+  }
 }

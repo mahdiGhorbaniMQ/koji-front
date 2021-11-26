@@ -1,24 +1,26 @@
 <div class="user-page" (window:resize)="onResize()">
-    <div class="header-container bg-dark" [ngStyle]="information.headerStyle">
-        <nav class="navbar navbar-expand-sm bg-dark navbar-dark" س dir="rtl">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="">
-                <img src="../../assets/logo.jpeg" alt="لوگو" style="width:40px;" class="rounded-pill">
-                <span class="h3 m-4">کجی</span>
-              </a>
-                <button 
-                    class="btn btn-warning menu-controll-btn" 
-                    *ngIf="information.pageWidth<=800 || information.showMenu"
-                    (click)="changeNavBarState()">
-                    <div *ngIf="information.showMenu">
-                        >
-                    </div>
-                    <div *ngIf="!information.showMenu">
-                        <
-                    </div>
-                </button>
-            </div>
-        </nav> 
+    <div [class]="information.theme">
+        <div class="header-container" [ngStyle]="information.headerStyle">
+            <nav class="navbar navbar-expand-sm navbar-dark" dir="rtl">
+                <div class="container-fluid">
+                  <a class="navbar-brand" href="">
+                    <img src="../../assets/logo.jpeg" alt="لوگو" style="width:40px;" class="rounded-pill">
+                    <span class="h3 m-4">کجی</span>
+                  </a>
+                    <button 
+                        class="btn btn-warning menu-controll-btn" 
+                        *ngIf="information.pageWidth<=800 || information.showMenu"
+                        (click)="changeNavBarState()">
+                        <div *ngIf="information.showMenu">
+                            >
+                        </div>
+                        <div *ngIf="!information.showMenu">
+                            <
+                        </div>
+                    </button>
+                </div>
+            </nav> 
+        </div>
     </div>
     <div class="nav-bar-container" [ngStyle]="information.navBarStyle">
         <app-nav-bar></app-nav-bar>

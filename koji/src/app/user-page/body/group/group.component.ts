@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
+import { UserPageInformationService } from 'src/app/public/information/user-page-information.service';
 import { EventModel } from 'src/app/public/models/event-model';
 import { GroupModel } from 'src/app/public/models/group-model';
 
@@ -15,7 +16,8 @@ export class GroupComponent implements OnInit {
 
   selectedGroup!:GroupModel;
   constructor(private usrePageController:UserPageControllerService,
-              private router:Router) { }
+              private router:Router,
+              public userPageInformation:UserPageInformationService) { }
   ngOnInit(): void {
     this.selectedGroup=this.usrePageController.getSelectedGroup()!;
   }

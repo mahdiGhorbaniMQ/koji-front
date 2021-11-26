@@ -5,6 +5,7 @@ import { BackendAPIService } from 'src/app/public/backendAPI/backend-api.service
 import { UserControllerService } from 'src/app/public/controller/user-controller.service';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
 import { UserInformationService } from 'src/app/public/information/user-information.service';
+import { UserPageInformationService } from 'src/app/public/information/user-page-information.service';
 
 @Component({
   selector: 'app-create-group',
@@ -29,6 +30,7 @@ export class CreateGroupComponent implements OnInit {
   isLoading:boolean=false;
   
   constructor(private usrePageController:UserPageControllerService,
+              public userPageInformation:UserPageInformationService,
               private router:Router,
               private builder: FormBuilder,
               private backendAPI: BackendAPIService,
@@ -60,11 +62,14 @@ export class CreateGroupComponent implements OnInit {
   }
   create(){
     this.isLoading = true;
-    this.backendAPI.createGroup(this.groupName.value,this.groupBio.value,[]).subscribe(
+    this.backendAPI.createGroup(this.groupName.value,this.groupBio.value,["2"]).subscribe(
       (Response:any)=>{
         this.isLoading = false;
         this.createSuccess = true;
         this.createError = false;
+        setTimeout(() => {
+          this.goHome()
+        }, 1500);
       },
       (error:any)=>{
         this.isLoading = false;
@@ -73,6 +78,7 @@ export class CreateGroupComponent implements OnInit {
       }
     )
   }
-  navigate(endpoint:string){
+  goHome(){
+    this.router.navigate(["/user/home"]);
   }
 }

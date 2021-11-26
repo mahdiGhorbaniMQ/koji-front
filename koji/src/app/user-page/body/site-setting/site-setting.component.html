@@ -1,9 +1,39 @@
-<div class="site-setting-container">
-    <div class="site-setting">
-        <div class="h2 text-right header" dir="rtl">
-            <button class="btn btn-back-container bg-dark text-white rounded-pill h6" (click)="back()">
-                <
-            </button>
+<div [class]="userPageInformation.theme">
+    <div class="site-setting-container">
+        <div class="site-setting">
+            <div class="h2 text-right header" dir="rtl">
+                <button class="btn btn-back-container btn-dark text-white rounded-pill h6" (click)="back()">
+                    <
+                </button>
+                <div>
+                    تنظیمات سایت
+                </div>
+            </div>
+            <div class="body">
+                <div class="setting-panle m-5">
+                    <p class="h3">ظاهر سایت</p>
+                    <hr>
+                    <p class="h5">:یکی از تم های زیر را انتخاب کنید</p>
+                    <div class="theme-panle">
+                        <div class="theme-item pt-3">
+                            <label for="defult" style="margin-right: 3px;">پیش فرض</label>
+                            <input type="radio" value="defult" name="theme" id="defult" [formControl]="themeType" (change)=changeTheme()>
+                        </div>
+                        <div class="theme-item pt-3">
+                            <label for="derakula" style="margin-right: 3px;">دراکولا</label>
+                            <input type="radio" id="derakula" value="derakula" name="theme" [formControl]="themeType" (change)=changeTheme()>
+                        </div>
+                        <div class="theme-item pt-3">
+                            <label for="light" style="margin-right: 3px;">روشن</label>
+                            <input type="radio" id="light" value="light" name="theme" [formControl]="themeType" (change)=changeTheme()>
+                        </div>
+                        <div class="theme-item pt-3">
+                            <label for="fantasy" style="margin-right: 3px;">فانتزی</label>
+                            <input type="radio" id="fantasy" value="fantasy" name="theme" [formControl]="themeType" (change)=changeTheme()>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </div>    
 </div>

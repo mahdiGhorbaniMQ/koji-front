@@ -1,22 +1,24 @@
-<div class="group-container">
-    <div class="group">
-        <div class="h2 text-right header" dir="rtl">
-            <div class="button-panle p-3">
-                <button class="btn bg-dark text-white rounded-pill h6" (click)="back()">
-                    <
-                </button>
-                <button class="btn btn-dark text-white ounded-pill h6" (click)="navigate('user/group/profile')">?</button>
+<div [class]="userPageInformation.theme">
+    <div class="group-container">
+        <div class="group">
+            <div class="h2 text-right header" dir="rtl">
+                <div class="button-panle p-3">
+                    <button class="btn btn-dark text-white rounded-pill h6" (click)="back()">
+                        <
+                    </button>
+                    <button class="btn btn-dark text-white ounded-pill h6" (click)="navigate('user/group/profile')">?</button>
+                </div>
+                <div class="">
+                    قرار های این گروه
+                </div>
             </div>
-            <div class="">
-                قرار های این گروه
+            <div dir="rtl" 
+                *ngFor="let event of selectedGroup.events"
+                 class="event"
+                 (click)="showEvent(event)"
+                 >
+                 <span class="h4">عنوان قرار: </span><span class="h5 p-3"> {{event.title}}</span>
             </div>
-        </div>
-        <div dir="rtl" 
-            *ngFor="let event of selectedGroup.events"
-             class="event"
-             (click)="showEvent(event)"
-             >
-             <span class="h4">عنوان قرار: </span><span class="h5 p-3"> {{event.title}}</span>
         </div>
     </div>
 </div>

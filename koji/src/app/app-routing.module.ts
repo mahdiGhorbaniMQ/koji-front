@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutUsPageComponent } from './about-us-page/about-us-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { NotFoundComponent } from './not-found/not-found/not-found.component';
+import { PageNotFoundComponent } from './not-found/page-not-found/page-not-found.component';
 import { UserPageComponent } from './user-page/user-page.component';
 
 const routes: Routes = [
@@ -25,6 +26,12 @@ const routes: Routes = [
   {
     path: "notFound",
     component: NotFoundComponent,
+    loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule)
+
+  },
+  {
+    path: "**",
+    component: PageNotFoundComponent,
     loadChildren: () => import('./not-found/not-found.module').then(m => m.NotFoundModule)
 
   },

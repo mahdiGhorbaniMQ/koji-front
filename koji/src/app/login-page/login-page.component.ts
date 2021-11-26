@@ -79,6 +79,9 @@ export class LoginPageComponent implements OnInit {
       password: this.passwordI
     }); 
   }
+  navigate(endpoint:string){
+    this.router.navigate(["/"+endpoint]);
+  }
   signUp(){
     this.isLoadingU=true;
     this.signUpErr=false;

@@ -44,13 +44,8 @@
 .btn-form{
     border-radius: 20px;
     border: none;
-    // background-color: #63b1ee;
     color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
     padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
     transition: transform 80ms ease-in;
 }
 .btn-form:active{
@@ -64,7 +59,7 @@
     border-color: #ffffff;
 }
 .error{
-    color: red;
+    color: rgb(202, 52, 52);
 }
 form{
     // background-color: #ffffff;
@@ -84,4 +79,56 @@ input,textarea{
     padding: 12px 15px;
     margin: 8px 0;
     width: 100%;
+}
+
+
+.light{
+
+    .header button ,#groupType{
+        background-color: rgb(189, 142, 142);
+        color: #000;
+        border-color: rgb(189, 142, 142);
+    }
+    .create-group{
+        box-shadow: 2px 2px 5px rgb(172, 172, 172) ,-2px -2px 5px rgb(172, 172, 172);
+        background-color: rgba(207, 204, 204, 0.719);
+        color: #000;
+    }
+
+    .header{
+        border-bottom: 2px solid rgb(20, 20, 20);
+    }
+}
+.derakula{
+    input,textarea{
+        background-color: rgb(37, 37, 37);
+        color: #fff;
+    }
+    .header button ,#groupType{
+        background-color: rgb(9, 95, 110);
+        color: #fff;
+        border-color: rgb(9, 95, 110);
+    }
+    .create-group{
+        box-shadow: 2px 2px 5px rgb(172, 172, 172) ,-2px -2px 5px rgb(172, 172, 172);
+        background-color: rgba(88, 88, 88, 0.719);
+        color: #fff;
+    }
+    .header{
+        border-bottom: 2px solid darkgray;
+    }
+}
+.fantasy{
+    .header button ,#groupType{
+        background-color: rgb(30, 162, 185);
+        color: black;
+        border-color: rgb(30, 162, 185);
+    }
+    .create-group{
+        background-color: rgba(172, 166, 209, 0.719);
+        color: #000;
+    }
+    .header{
+        border-bottom: 2px solid rgb(7, 7, 7);
+    }
 }

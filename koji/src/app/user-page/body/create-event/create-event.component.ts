@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { BackendAPIService } from 'src/app/public/backendAPI/backend-api.service';
 import { UserControllerService } from 'src/app/public/controller/user-controller.service';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
+import { UserPageInformationService } from 'src/app/public/information/user-page-information.service';
 
 @Component({
   selector: 'app-create-event',
@@ -19,18 +20,26 @@ export class CreateEventComponent implements OnInit {
   eventDates!:FormControl;
   placeInput!:FormControl;
   dateInput!:FormControl;
+  timeType!:FormControl;
+
   createEventData={
     eventTitle:"",
     eventDescriptions:"",
     eventPlaces:new Array<string>(),
     eventDates:new Array<string>()
   }
+  dateType:string="datetime-local";
+
   constructor(private usrePageController:UserPageControllerService,
               private router:Router,
               private builder: FormBuilder,
+              public userPageInformation:UserPageInformationService,
               private backendAPI:BackendAPIService,
               private userController:UserControllerService) { }
   ngOnInit(): void {
+    this.timeType= new FormControl(this.dateType, [
+      Validators.required,
+    ]);
     this.eventTitle= new FormControl(this.createEventData.eventTitle, [
       Validators.required,
     ]);

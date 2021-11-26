@@ -1,51 +1,53 @@
-<div class="create-group-container">
-    <div class="create-group">
-        <div class="h2 text-right header" dir="rtl">
-            <div>
-                یک گروه جدید بسازید
-            </div>
-            <button class="btn btn-back-container bg-dark text-white rounded-pill h6" (click)="back()">
-                <
-            </button>
-        </div>
-        <div class="body">
-            <form class="mt-4 mb-4" [formGroup]="createGroupForm" (ngSubmit)="create()">
+<div [class]="userPageInformation.theme">
+    <div class="create-group-container">
+        <div class="create-group">
+            <div class="h2 text-right header" dir="rtl">
                 <div>
-                    <input class="text-center" type="text" placeholder="نام گروه" name="groupName" id="groupName" [formControl]="groupName">  
-                    <span [hidden]="groupName.valid || groupName.untouched" class="error"  dir="rtl">  
-                        <div [hidden]="!groupName.hasError('minlength')">  
-                            نام شما نمیتواند کمتر از سه حرف باشد.  
-                        </div>  
-                        <div [hidden]="!groupName.hasError('required')">  
-                            این فیلد ظروری است.
-                        </div>  
-                    </span>  
+                    یک گروه جدید بسازید
                 </div>
-                <div dir="rtl">
-                    <textarea rows="4" cols="19" class="text-center" type="text" placeholder="درباره گروه" name="groupBio" id="groupBio" [formControl]="groupBio"></textarea>
-                    <span [hidden]="groupBio.valid || groupBio.untouched" class="error"  dir="rtl">  
-                        <div [hidden]="!groupBio.hasError('minlength')">  
-                            نام شما نمیتواند کمتر از سه حرف باشد.  
-                        </div> 
-                        <div [hidden]="!groupBio.hasError('required')">  
-                            این فیلد ظروری است.
-                        </div>  
-                    </span>  
-                </div>
-                <div dir="rtl">
-                    <label for="groupType">نوع گروه را انتخاب کنید: </label>
-                    <select class="btn btn-warning m-4" name="groupType" id="groupType" [formControl]="groupType">
-                      <option value="private">خصوصی</option>
-                      <option value="public">عمومی</option>
-                    </select>
-                </div>
-                <button dir="rtl" type="submit" [disabled]="!createGroupForm.valid" class="submit btn-form btn-success mb-3">ساختن</button>  
-                <div class="group-link" dir="rtl">
-                    <div *ngIf="isLoading">لطفا منتظر بمانید ...</div>
-                    <div class="text-success" *ngIf="createSuccess">گروه با موفقیت ساخته شد.</div>
-                    <div class="text-danger" *ngIf="createError">مشکلی در ساختن گروه پیش آمده است.</div>
-                </div>
-            </form>
+                <button class="btn btn-back-container btn-dark text-white rounded-pill h6" (click)="back()">
+                    <
+                </button>
+            </div>
+            <div class="body">
+                <form class="mt-4 mb-4" [formGroup]="createGroupForm" (ngSubmit)="create()">
+                    <div>
+                        <input class="text-center" type="text" placeholder="نام گروه" name="groupName" id="groupName" [formControl]="groupName">  
+                        <span [hidden]="groupName.valid || groupName.untouched" class="error"  dir="rtl">  
+                            <div [hidden]="!groupName.hasError('minlength')">  
+                                نام شما نمیتواند کمتر از سه حرف باشد.  
+                            </div>  
+                            <div [hidden]="!groupName.hasError('required')">  
+                                این فیلد ضروری است.
+                            </div>  
+                        </span>  
+                    </div>
+                    <div dir="rtl">
+                        <textarea rows="4" cols="19" class="text-center" type="text" placeholder="درباره گروه" name="groupBio" id="groupBio" [formControl]="groupBio"></textarea>
+                        <span [hidden]="groupBio.valid || groupBio.untouched" class="error"  dir="rtl">  
+                            <div [hidden]="!groupBio.hasError('minlength')">  
+                                نام شما نمیتواند کمتر از سه حرف باشد.  
+                            </div> 
+                            <div [hidden]="!groupBio.hasError('required')">  
+                                این فیلد ضروری است.
+                            </div>  
+                        </span>  
+                    </div>
+                    <div dir="rtl">
+                        <label for="groupType">نوع گروه را انتخاب کنید: </label>
+                        <select class="btn btn-warning m-4" name="groupType" id="groupType" [formControl]="groupType">
+                          <option value="private">خصوصی</option>
+                          <option value="public">عمومی</option>
+                        </select>
+                    </div>
+                    <button dir="rtl" type="submit" [disabled]="!createGroupForm.valid" class="submit btn-form btn-success mb-3">ساختن</button>  
+                    <div class="group-link" dir="rtl">
+                        <div *ngIf="isLoading">لطفا منتظر بمانید ...</div>
+                        <div class="text-success" *ngIf="createSuccess">گروه با موفقیت ساخته شد.</div>
+                        <div class="text-danger" *ngIf="createError">مشکلی در ساختن گروه پیش آمده است.</div>
+                    </div>
+                </form>
+            </div>
         </div>
-    </div>
+    </div>    
 </div>

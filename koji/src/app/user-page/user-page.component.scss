@@ -24,3 +24,56 @@
 .menu-controll-btn{
     margin: 7px;
 }
+
+
+
+.defult{
+    .header-container{
+        background-color: rgb(41, 40, 40);
+        color: #fff;
+        span{
+            color: #fff;
+        }
+        border-bottom: 1px solid rgb(41, 40, 40);
+    }
+}
+.light{
+    .header-container{
+        background-color: rgb(194, 167, 167);
+        color: black;
+        span{
+            color: black;
+        }
+        button{
+            background-color: white;
+        }
+        border-bottom: 1px solid rgb(41, 40, 40);
+    }
+}
+.derakula{
+    .header-container{
+        background-color: rgb(9, 95, 110);
+        color: #fff;
+        span{
+            color: #fff;
+        }
+        button{
+            background-color: rgb(41, 40, 40);
+            color:#fff;
+        }
+        border-bottom: 1px solid rgb(41, 40, 40);
+    }
+}
+.fantasy{
+    .header-container{
+        background-color: rgb(67, 100, 143);
+        color: #fff;
+        span{
+            color: #fff;
+        }
+        button{
+            background-color: rgb(233, 103, 200);
+        }
+        border-bottom: 1px solid rgb(41, 40, 40);
+    }
+}

@@ -1,89 +1,89 @@
-<div class="create-event-container">
-    <div class="create-event">
-        <div class="h2 text-right header" dir="rtl">
-            <div>
-                یک قرار جدید تنظیم کنید
-            </div>
-            <button class="btn btn-back-container bg-dark text-white rounded-pill h6" (click)="back()">
-                <
-            </button>
-        </div>
-        <div class="body">
-            <form class="mt-4 mb-4" [formGroup]="createEventForm" (ngSubmit)="create()">
+<div [class]="userPageInformation.theme">
+    <div class="create-event-container">
+        <div class="create-event">
+            <div class="h2 text-right header" dir="rtl">
                 <div>
-                    <label for="place" class="h5">یک عنوان برای قرار بنویسید</label><br>
-                    <input class="text-center" type="text" placeholder="عنوان قرار" name="eventTitle" id="eventTitle" [formControl]="eventTitle">  
-                    <span [hidden]="true" class="error"  dir="rtl">  
-                        <div [hidden]="true">  
-                            نام شما نمیتواند کمتر از سه حرف باشد.  
-                        </div>  
-                        <div [hidden]="true">  
-                            نام را وارد کنید
-                        </div>  
-                    </span>  
+                    یک قرار جدید تنظیم کنید
                 </div>
-                <div class="m-4" style="position: relative; width: 100%; border-bottom: 2px solid black;"></div>
-                <div dir="rtl">
-                    <label for="place" class="h5">توضیحاتی راجب قرار بنویسید</label><br>
-                    <textarea rows="4" cols="19" class="text-center" type="text" placeholder="توضیحات قرار" name="eventDescriptions" id="eventDescriptions" [formControl]="eventDescriptions"></textarea>
-                    <span [hidden]="true" class="error"  dir="rtl">  
-                        <div [hidden]="true">  
-                            نام شما نمیتواند کمتر از سه حرف باشد.  
-                        </div>  
-                        <div [hidden]="true">  
-                            نام را وارد کنید
-                        </div>  
-                    </span>  
-                </div>
-                <div class="m-4" style="position: relative; width: 100%; border-bottom: 2px solid black;"></div>
-                <!-- <div dir="rtl">
-                    <label for="groupType">نوع گروه را انتخاب کنید: </label>
-                    <select class="btn btn-warning m-4" name="groupType" id="groupType" [formControl]="groupType">
-                      <option value="private">خصوصی</option>
-                      <option value="public">عمومی</option>
-                    </select>
-                </div> -->
-                <div class="mt-3" dir="rtl">
-                    <label for="place" class="h5">مکان های مورد نظر برای قرار را مشخص کنید</label><br>
-                    <input 
-                        style="width: 70%; height: 40px;" 
-                        type="text" placeholder="نام مکان" 
-                        name="place" id="place"
-                        [formControl]="placeInput"
-                        >
-                    <button class="btn btn-danger m-3" (click)="addPlace()">افزودن</button>
-                    <br><br>
-                </div>
-                <div class="places-container pb-3" dir="rtl" style="position: relative; width: 100%; border-bottom: 2px solid black;">
-                    <div class="place-item bg-success" *ngFor="let place of createEventData.eventPlaces;let i=index">
-                        <button class="btn btn-danger mr-3" (click)="deletePlace(i)">x</button>
-                        <span class="p-3 text-white">{{place}}</span>
+                <button class="btn btn-back-container btn-dark text-white rounded-pill h6" (click)="back()">
+                    <
+                </button>
+            </div>
+            <div class="body">
+                <form class="mt-4 mb-4" [formGroup]="createEventForm" (ngSubmit)="create()">
+                    <div>
+                        <label for="place" class="h5">یک عنوان برای قرار بنویسید</label><br>
+                        <input class="text-center" type="text" placeholder="عنوان قرار" name="eventTitle" id="eventTitle" [formControl]="eventTitle">  
+                        <span [hidden]="true" class="error"  dir="rtl">  
+                            <div [hidden]="true">  
+                                نام شما نمیتواند کمتر از سه حرف باشد.  
+                            </div>  
+                            <div [hidden]="true">  
+                                نام را وارد کنید
+                            </div>  
+                        </span>  
                     </div>
-                </div>
-
-                <div class="mt-5" dir="rtl">
-                    <label for="date" class="h5">تاریخ های مورد نظر برای قرار را اضافه کنید</label><br>
-                    <input 
-                         style="width: 70%; height: 40px;" 
-                         type="datetime-local" 
-                         name="date" id="date"
-                         dir="ltr"
-                         [formControl]="dateInput">
-                    <button class="btn btn-danger m-3" (click)="addDate()">افزودن</button>
-                    <br><br>
-                </div>
-                <div class="dates-container mb-5 pb-3" dir="rtl" style="position: relative; width: 100%; border-bottom: 2px solid black;">
-                    <div class="dates-item bg-success" *ngFor="let date of createEventData.eventDates;let i=index">
-                        <button class="btn btn-danger mr-3" (click)="deleteDate(i)">x</button>
-                        <span class="p-3 text-white">{{date}}</span>
+                    <div class="m-4" style="position: relative; width: 100%; border-bottom: 2px solid black;"></div>
+                    <div dir="rtl">
+                        <label for="place" class="h5">توضیحاتی راجب قرار بنویسید</label><br>
+                        <textarea rows="4" cols="19" class="text-center" type="text" placeholder="توضیحات قرار" name="eventDescriptions" id="eventDescriptions" [formControl]="eventDescriptions"></textarea>
+                        <span [hidden]="true" class="error"  dir="rtl">  
+                            <div [hidden]="true">  
+                                نام شما نمیتواند کمتر از سه حرف باشد.  
+                            </div>  
+                            <div [hidden]="true">  
+                                نام را وارد کنید
+                            </div>  
+                        </span>  
                     </div>
+                    <div class="m-4" style="position: relative; width: 100%; border-bottom: 2px solid black;"></div>
+                    <div class="mt-3" dir="rtl">
+                        <label for="place" class="h5">مکان های مورد نظر برای قرار را مشخص کنید</label><br>
+                        <input 
+                            style="width: 70%; height: 40px;" 
+                            type="text" placeholder="نام مکان" 
+                            name="place" id="place"
+                            [formControl]="placeInput"
+                            >
+                        <button class="btn btn-danger m-3" (click)="addPlace()">افزودن</button>
+                        <br><br>
+                    </div>
+                    <div class="places-container pb-3" dir="rtl" style="position: relative; width: 100%; border-bottom: 2px solid black;">
+                        <div class="place-item bg-success" *ngFor="let place of createEventData.eventPlaces;let i=index">
+                            <button class="btn btn-danger mr-3" (click)="deletePlace(i)">x</button>
+                            <span class="p-3 text-white">{{place}}</span>
+                        </div>
+                    </div>
+    
+                    <div class="mt-5" dir="rtl">
+                        <label for="date" class="h5">تاریخ های مورد نظر برای قرار را اضافه کنید</label><br>
+                        <input 
+                             style="width: 70%; height: 40px;" 
+                             [type]="timeType.value" 
+                             name="date" id="date"
+                             dir="ltr"
+                             class="text-center"
+                             [formControl]="dateInput">
+                             <select class="btn btn-warning m-4" name="timeType" id="timeType" [formControl]="timeType">
+                                <option value="text">متن</option>
+                                <option value="datetime-local">تاریخ</option>
+                              </select>
+                        <button class="btn btn-danger m-3" (click)="addDate()">افزودن</button>
+                        <br><br>
+                    </div>
+                    <div class="dates-container mb-5 pb-3" dir="rtl" style="position: relative; width: 100%; border-bottom: 2px solid black;">
+                        <div class="dates-item bg-success" *ngFor="let date of createEventData.eventDates;let i=index">
+                            <button class="btn btn-danger mr-3" (click)="deleteDate(i)">x</button>
+                            <span class="p-3 text-white">{{date}}</span>
+                        </div>
+                    </div>
+    
+                    <button dir="rtl" type="submit" [disabled]="false" class="submit btn-form btn-success mb-3">ساختن</button>  
+                </form>
+                <div class="group-link">
+    
                 </div>
-
-                <button dir="rtl" type="submit" [disabled]="false" class="submit btn-form btn-success mb-3">ساختن</button>  
-            </form>
-            <div class="group-link">
-
             </div>
         </div>
-    </div>
+    </div>    
 </div>

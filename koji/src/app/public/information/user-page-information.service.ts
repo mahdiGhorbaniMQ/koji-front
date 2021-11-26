@@ -17,7 +17,9 @@ export class UserPageInformationService {
   pageWidth!:number;
   pageHeight!:number;
   showMenu:boolean=false;
+  theme!:string;
   constructor() {
+    this.theme = localStorage.getItem("theme")? localStorage.getItem("theme")!: "defult";
     this.headerStyle={};
     this.bodyStyle={};
     this.navBarStyle={};

@@ -37,3 +37,54 @@
     height: 120px;
     border-bottom: 2px solid black;
 }
+
+
+.light{
+    .home{
+        box-shadow: 2px 2px 5px rgb(172, 172, 172) ,-2px -2px 5px rgb(172, 172, 172);
+        // background-color: rgba(63, 63, 63, 0.719);
+        background-color: rgba(207, 204, 204, 0.719);
+        color: #000;
+    }
+    .group{
+        
+        border-bottom: 2px solid rgb(27, 27, 27);
+    }
+    .group:hover{
+        background-color: rgba(224, 224, 224, 0.925);
+    }
+    .header{
+        border-bottom: 2px solid rgb(20, 20, 20);
+    }
+}
+.derakula{
+    .home{
+        box-shadow: 2px 2px 5px rgb(172, 172, 172) ,-2px -2px 5px rgb(172, 172, 172);
+        background-color: rgba(63, 63, 63, 0.719);
+        color: #fff;
+    }
+    .group{
+        border-bottom: 2px solid gray;
+    }
+    .group:hover{
+        background-color: rgba(63, 63, 63, 0.877);
+    }
+    .header{
+        border-bottom: 2px solid darkgray;
+    }
+}
+.fantasy{
+    .home{
+        background-color: rgba(208, 166, 209, 0.719);
+        color: #000;
+    }
+    .group{
+        border-bottom: 2px solid rgb(8, 8, 8);
+    }
+    .group:hover{
+        background-color: rgba(208, 166, 209, 0.918);
+    }
+    .header{
+        border-bottom: 2px solid rgb(7, 7, 7);
+    }
+}

@@ -1,25 +1,27 @@
-<div class="nav-bar-container">
-    <div class="nav-bar">
-        <div class="image-container">
-            <img src="../../../../assets/noProfile.jpg" alt="" width="130px" height="130px" class="rounded-pill">
-            <div
-                *ngIf="userPageInformation.selectedGroup!==undefined"
-                class="text-center h4 name-container text-white">
-                {{userPageInformation.selectedGroup.name}}
+<div [class]="userPageInformation.theme">
+    <div class="nav-bar-container">
+        <div class="nav-bar">
+            <div class="image-container">
+                <img src="../../../../assets/noProfile.jpg" alt="" width="130px" height="130px" class="rounded-pill">
+                <div
+                    *ngIf="userPageInformation.selectedGroup!==undefined"
+                    class="text-center h4 name-container">
+                    {{userPageInformation.selectedGroup.name}}
+                </div>
+                <div 
+                    *ngIf="userPageInformation.selectedGroup===undefined"    
+                    class="text-center h4 name-container">
+                    {{userData.name}}
+                </div>
             </div>
-            <div 
-                *ngIf="userPageInformation.selectedGroup===undefined"    
-                class="text-center h4 name-container text-white">
-                {{userData.name}}
+            <div class="options-container">
+                <button class="btn btn-dark row option-item mb-3" (click)="navigate('createEvent')">تنظیم قرار جدید</button>
+                <button class="btn btn-dark row option-item mb-3" (click)="navigate('profile')">نمایش پروفایل</button>
+                <button class="btn btn-dark row option-item mb-3" (click)="navigate('joinGroup')">جستوجوی گروه</button>
+                <button class="btn btn-dark row option-item mb-3" (click)="navigate('createGroup')">ساختن گروه</button>
+                <button class="btn btn-dark row option-item mb-3" (click)="navigate('setting')">تنظیمات سایت</button>
             </div>
+    
         </div>
-        <div class="options-container">
-            <button class="btn btn-dark text-white row option-item mb-3" (click)="navigate('createEvent')">تنظیم قرار جدید</button>
-            <button class="btn btn-dark text-white row option-item mb-3">نمایش پروفایل</button>
-            <button class="btn btn-dark text-white row option-item mb-3" (click)="navigate('joinGroup')">جستوجوی گروه</button>
-            <button class="btn btn-dark text-white row option-item mb-3" (click)="navigate('createGroup')">ساختن گروه</button>
-            <button class="btn btn-dark text-white row option-item mb-3">تنظیمات سایت</button>
-        </div>
-
     </div>
 </div>

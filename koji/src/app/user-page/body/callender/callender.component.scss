@@ -32,3 +32,51 @@
     right: 5px;
     top: 40px;
 }
+
+
+.light{
+    .header button{
+        background-color: rgb(189, 142, 142);
+        color: #000;
+        border-color: rgb(189, 142, 142);
+    }
+    .callender{
+        box-shadow: 2px 2px 5px rgb(172, 172, 172) ,-2px -2px 5px rgb(172, 172, 172);
+        // background-color: rgba(63, 63, 63, 0.719);
+        background-color: rgba(207, 204, 204, 0.719);
+        color: #000;
+    }
+
+    .header{
+        border-bottom: 2px solid rgb(20, 20, 20);
+    }
+}
+.derakula{
+    .header button{
+        background-color: rgb(9, 95, 110);
+        color: #ffffff;
+        border-color: rgb(9, 95, 110);
+    }
+    .callender{
+        box-shadow: 2px 2px 5px rgb(172, 172, 172) ,-2px -2px 5px rgb(172, 172, 172);
+        background-color: rgba(88, 88, 88, 0.719);
+        color: #fff;
+    }
+    .header{
+        border-bottom: 2px solid darkgray;
+    }
+}
+.fantasy{
+    .header button{
+        background-color: rgb(30, 162, 185);
+        color: black;
+        border-color: rgb(30, 162, 185);
+    }
+    .callender{
+        background-color: rgba(172, 166, 209, 0.719);
+        color: #000;
+    }
+    .header{
+        border-bottom: 2px solid rgb(7, 7, 7);
+    }
+}
