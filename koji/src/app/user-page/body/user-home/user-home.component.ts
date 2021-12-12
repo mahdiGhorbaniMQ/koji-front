@@ -50,11 +50,13 @@ export class UserHomeComponent implements OnInit {
         });
       },
       (error:Error) => console.log(error)
-    )
+    );
   }
   selectGroup(group:GroupModel){
     this.userPageController.setSelectedGroup(group);
     this.router.navigate(["/user/group"]);
   }
-
+  navigate(endPoint:string){
+    this.router.navigate([endPoint]);
+  }
 }

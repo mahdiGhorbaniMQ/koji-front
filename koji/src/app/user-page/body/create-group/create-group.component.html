@@ -12,7 +12,7 @@
             <div class="body">
                 <form class="mt-4 mb-4" [formGroup]="createGroupForm" (ngSubmit)="create()">
                     <div>
-                        <input class="text-center" type="text" placeholder="نام گروه" name="groupName" id="groupName" [formControl]="groupName">  
+                        <input cols="19" class="text-center" type="text" placeholder="نام گروه" name="groupName" id="groupName" [formControl]="groupName">  
                         <span [hidden]="groupName.valid || groupName.untouched" class="error"  dir="rtl">  
                             <div [hidden]="!groupName.hasError('minlength')">  
                                 نام شما نمیتواند کمتر از سه حرف باشد.  

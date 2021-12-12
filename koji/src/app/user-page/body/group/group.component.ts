@@ -29,7 +29,7 @@ export class GroupComponent implements OnInit {
     this.usrePageController.setSelectedGroup(undefined);
     this.router.navigate(["/user/home"]);
   }
-  navigate(endpoint:string){
-    this.router.navigate([endpoint]);
+  navigate(endPoint:string){
+    this.router.navigate([endPoint]);
   }
 }

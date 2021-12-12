@@ -33,6 +33,8 @@ export class ProfileComponent implements OnInit {
   login(){
     this.loginAlert = true;
     var f = (event:any) => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("email");
       this.router.navigate(["/login"]);
     };
     setTimeout(() => {

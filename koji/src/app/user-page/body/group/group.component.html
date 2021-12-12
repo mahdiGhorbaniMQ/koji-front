@@ -19,6 +19,13 @@
                  >
                  <span class="h4">عنوان قرار: </span><span class="h5 p-3"> {{event.title}}</span>
             </div>
+            <div 
+                dir="rtl"
+                *ngIf="true"
+                >
+                <p class="h4 p-4">این گروه قراری ندارد.</p>
+                <p><a (click)="navigate('user/createEvent')" class="h6 p-4">تنظیم قرار جدید</a></p>
+            </div>
         </div>
     </div>
 </div>

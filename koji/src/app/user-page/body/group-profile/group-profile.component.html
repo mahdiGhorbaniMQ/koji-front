@@ -10,20 +10,23 @@
                 </div>
                 <div class="text-center detail">
                     <p class="h1 mb-4">{{selectedGroup.name}}</p>
-                    <p class="h4">{{selectedGroup.bio}}</p>
                 </div>
             </div>
             <div class="body">
-                <div dir="rtl" class="link">
-                    لینک گروه: {{selectedGroup.link}}
+                <div dir="rtl" class="bio">
+                    <span class="h5">توضیحات گروه: </span><span class="p-3"> {{selectedGroup.bio}}</span>
                 </div>
+                <div dir="rtl" class="link">
+                    <span class="h5">لینک گروه: </span><span class="p-3"> {{selectedGroup.link}}</span>
+                </div>
+                <div style="position: relative;top:-8px;height: 15px; border-bottom: 2px solid black; background-color: rgb(36, 36, 36);"></div>
                 <div dir="rtl" 
                     *ngFor="let user of selectedGroup.users"
                     class="user"
                     >
                     <span class="h4">نام کاربر: </span><span class="h5 p-3"> {{user.name}} </span>
                     <!-- <span class="h4 p-3">ایمیل کاربر: </span><span class="h5"> {{user.email}}</span> -->
-                    <div class="h6 m-3 bg-danger text-white rounded-pill owner" *ngIf="selectedGroup.creator==user.email">سازنده</div>
+                    <div class="h6 m-3 bg-dark text-white rounded-pill owner" *ngIf="selectedGroup.creator==user.email">سازنده</div>
                 </div>
             </div>
         </div>

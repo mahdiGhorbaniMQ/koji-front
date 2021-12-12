@@ -1,5 +1,37 @@
 <div class="body">
-    <div class="container" id="container">
+    <div class="container right-panel-active" id="container">
+        <div class="form-container sign-in-container">
+            <form [formGroup]="signInForm" (ngSubmit)="signIn()">
+                <h1 dir="rtl">ورود</h1>
+                <div>
+                    <input class="text-center" type="email" placeholder="ایمیل" name="emailI" id="emailI" [formControl]="emailI">
+                    <span [hidden]="emailI.valid || emailI.untouched" class="error" dir="rtl">  
+                        <div [hidden]="!emailI.hasError('email')">  
+                            ایمیل معتبر نمی باشد.
+                        </div>
+                        <div [hidden]="!emailI.hasError('required')">  
+                            این فیلد ضروری است.
+                        </div>  
+                    </span>  
+                </div>
+                <div>
+                    <input class="text-center" type="password" placeholder="پسوورد" name="passwordI" id="passwordI" [formControl]="passwordI">  
+                    <span [hidden]="passwordI.valid || passwordI.untouched" class="error" dir="rtl">  
+                        <div [hidden]="!passwordI.hasError('minlength')">  
+                            پسوورد نمیتواند کمتر از چهار حرف باشد.
+                        </div>  
+                        <div [hidden]="!passwordI.hasError('required')">  
+                            این فیلد ضروری است.
+                        </div>  
+                    </span>  
+                </div>
+                <p class="link" (click)="navigate('notFound')">پسوردتان را فراموش کردید؟</p>
+                <button type="submit" [disabled]="!signInForm.valid" class="submit" dir="rtl">ورود</button> 
+                <div *ngIf="isLoadingI" dir="rtl" class="pt-3">منتظر بمانید ...</div>
+                <br>
+                <div *ngIf="signInErr" dir="rtl" class="error pt-3">{{signInErrContent}}</div> 
+            </form>
+        </div>
         <div class="form-container sign-up-container">
             <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
                 <h1  dir="rtl">ثبت نام</h1>
@@ -42,51 +74,19 @@
                 <div *ngIf="signUpErr" dir="rtl" class="error pt-3">{{signUpErrContent}}</div> 
             </form>
         </div>
-        <div class="form-container sign-in-container">
-            <form [formGroup]="signInForm" (ngSubmit)="signIn()">
-                <h1 dir="rtl">ورود</h1>
-                <div>
-                    <input class="text-center" type="email" placeholder="ایمیل" name="emailI" id="emailI" [formControl]="emailI">
-                    <span [hidden]="emailI.valid || emailI.untouched" class="error" dir="rtl">  
-                        <div [hidden]="!emailI.hasError('email')">  
-                            ایمیل معتبر نمی باشد.
-                        </div>
-                        <div [hidden]="!emailI.hasError('required')">  
-                            این فیلد ضروری است.
-                        </div>  
-                    </span>  
-                </div>
-                <div>
-                    <input class="text-center" type="password" placeholder="پسوورد" name="passwordI" id="passwordI" [formControl]="passwordI">  
-                    <span [hidden]="passwordI.valid || passwordI.untouched" class="error" dir="rtl">  
-                        <div [hidden]="!passwordI.hasError('minlength')">  
-                            پسوورد نمیتواند کمتر از چهار حرف باشد.
-                        </div>  
-                        <div [hidden]="!passwordI.hasError('required')">  
-                            این فیلد ضروری است.
-                        </div>  
-                    </span>  
-                </div>
-                <p class="link" (click)="navigate('notFound')">پسوردتان را فراموش کردید؟</p>
-                <button type="submit" [disabled]="!signInForm.valid" class="submit" dir="rtl">ورود</button> 
-                <div *ngIf="isLoadingI" dir="rtl" class="pt-3">منتظر بمانید ...</div>
-                <br>
-                <div *ngIf="signInErr" dir="rtl" class="error pt-3">{{signInErrContent}}</div> 
-            </form>
-        </div>
         <div class="overlay-container">
             <div class="overlay">
-                <div class="overlay-panel overlay-left" dir="rtl">
-                    <h1>سلام دوست عزیز!</h1>
-                    <p class="text-white">برای ساختن حساب شخصی در<strong> کجی</strong> اطلاعات خود را وارد کنید.</p>
-                    <p class="text-white">از قبل حساب شخصی دارید؟</p>
-                    <button class="ghost" id="signIn" onclick="container.classList.remove('right-panel-active');">وارد شوید</button>
-                </div>
                 <div class="overlay-panel overlay-right" dir="rtl">
                     <h1>خوش آمدید!</h1>
                     <p class="text-white">لطفا با وارد کردن اطلاعاتتان وارد حساب شخصیتان در <strong>کجی</strong> شوید.</p>
                     <p class="text-white">حساب شخصی در کجی ندارید؟</p>
-                    <button class="ghost" id="signUp" onclick="container.classList.add('right-panel-active');">ثبت نام کنید</button>
+                    <button class="ghost" id="signUp" onclick="container.classList.remove('right-panel-active');">ثبت نام کنید</button>
+                </div>
+                <div class="overlay-panel overlay-left" dir="rtl">
+                    <h1>سلام دوست عزیز!</h1>
+                    <p class="text-white">برای ساختن حساب شخصی در<strong> کجی</strong> اطلاعات خود را وارد کنید.</p>
+                    <p class="text-white">از قبل حساب شخصی دارید؟</p>
+                    <button class="ghost" id="signIn" onclick="container.classList.add('right-panel-active');">وارد شوید</button>
                 </div>
             </div>
         </div>
