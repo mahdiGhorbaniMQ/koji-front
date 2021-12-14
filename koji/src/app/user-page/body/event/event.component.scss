@@ -65,15 +65,15 @@
 .conditions-container form{
     padding-right: 30px;
 }
-.user-conditions{
+// .user-conditions{
 
-}
-.all-conditions{
+// }
+// .all-conditions{
 
-}
-.final-conditions{
+// }
+// .final-conditions{
 
-}
+// }
 .places-container,.dates-container{
     display: flex;
     flex-wrap: wrap;
@@ -116,7 +116,9 @@
         background-color: rgba(207, 204, 204, 0.719);
         color: #000;
     }
-
+    .navigate-panel{
+        border-bottom: 2px solid rgb(20, 20, 20);
+    }
     .header{
         border-bottom: 2px solid rgb(20, 20, 20);
     }
@@ -132,6 +134,9 @@
         background-color: rgba(88, 88, 88, 0.719);
         color: #fff;
     }
+    .navigate-panel{
+        border-bottom: 2px solid darkgray;
+    }
     .header{
         border-bottom: 2px solid darkgray;
     }
@@ -145,6 +150,9 @@
     .event{
         background-color: rgba(172, 166, 209, 0.719);
         color: #000;
+    }
+    .navigate-panel{
+        border-bottom: 2px solid rgb(7, 7, 7);
     }
     .header{
         border-bottom: 2px solid rgb(7, 7, 7);

@@ -9,7 +9,7 @@
                     <button *ngIf="userIsAddmin" class="btn btn-dark text-white ounded-pill h6" (click)="deleteGroup()">حذف</button>
                 </div>
                 <div class="text-center detail">
-                    <p class="h1 mb-4">{{selectedGroup.name}}</p>
+                    <p class="h1">{{selectedGroup.name}}</p>
                 </div>
             </div>
             <div class="body">
@@ -24,9 +24,9 @@
                     *ngFor="let user of selectedGroup.users"
                     class="user"
                     >
-                    <span class="h4">نام کاربر: </span><span class="h5 p-3"> {{user.name}} </span>
+                    <span class="h4">نام کاربر: </span><span class="h5 p-3"> {{user}} </span>
                     <!-- <span class="h4 p-3">ایمیل کاربر: </span><span class="h5"> {{user.email}}</span> -->
-                    <div class="h6 m-3 bg-dark text-white rounded-pill owner" *ngIf="selectedGroup.creator==user.email">سازنده</div>
+                    <div class="h6 m-3 bg-dark text-white rounded-pill owner" *ngIf="selectedGroup.owner==user">سازنده</div>
                 </div>
             </div>
         </div>

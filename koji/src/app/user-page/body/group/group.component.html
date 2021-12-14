@@ -13,17 +13,17 @@
                 </div>
             </div>
             <div dir="rtl" 
-                *ngFor="let event of selectedGroup.events"
+                *ngFor="let item of groupEvents | keyvalue"
                  class="event"
-                 (click)="showEvent(event)"
+                 (click)="showEvent(item.value)"
                  >
-                 <span class="h4">عنوان قرار: </span><span class="h5 p-3"> {{event.title}}</span>
+                 <span class="h4">عنوان قرار: </span><span class="h5 p-3"> {{item.value.title}}</span>
             </div>
             <div 
                 dir="rtl"
-                *ngIf="true"
+                *ngIf="userPageInformation.selectedGroup!.events.length==0"
                 >
-                <p class="h4 p-4">این گروه قراری ندارد.</p>
+                <p class="h4 p-4">قراری یافت نشد.</p>
                 <p><a (click)="navigate('user/createEvent')" class="h6 p-4">تنظیم قرار جدید</a></p>
             </div>
         </div>

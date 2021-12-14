@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { GroupApiService } from 'src/app/public/api-services/group-api.service';
 import { BackendAPIService } from 'src/app/public/backendAPI/backend-api.service';
 import { UserControllerService } from 'src/app/public/controller/user-controller.service';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
@@ -33,18 +34,18 @@ export class CreateGroupComponent implements OnInit {
               public userPageInformation:UserPageInformationService,
               private router:Router,
               private builder: FormBuilder,
-              private backendAPI: BackendAPIService,
+              private groupApi:GroupApiService,
               private userInformation: UserInformationService,
               private userController: UserControllerService) { }
 
   ngOnInit(): void {
     this.groupName= new FormControl(this.createGroupData.groupName, [
       Validators.required,
-      Validators.minLength(3)
+      Validators.minLength(3),
+      Validators.minLength(30)
     ]);
     this.groupBio= new FormControl(this.createGroupData.groupBio, [
-      Validators.required,
-      Validators.minLength(3)
+      Validators.maxLength(40)
     ]);
     this.groupType= new FormControl(this.createGroupData.groupType, [
       Validators.required,
@@ -62,7 +63,11 @@ export class CreateGroupComponent implements OnInit {
   }
   create(){
     this.isLoading = true;
-    this.backendAPI.createGroup(this.groupName.value,this.groupBio.value,[]).subscribe(
+    var groupData = {
+      name: this.groupName.value,
+      bio: this.groupBio.value
+    }
+    this.groupApi.create(groupData).subscribe(
       (Response:any)=>{
         this.isLoading = false;
         this.createSuccess = true;
@@ -79,7 +84,6 @@ export class CreateGroupComponent implements OnInit {
     )
   }
   goHome(){
-    this.userInformation.userData.name="";
     this.router.navigate(["/user/home"]);
   }
 }

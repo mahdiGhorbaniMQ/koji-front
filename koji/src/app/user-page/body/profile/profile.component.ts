@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserControllerService } from 'src/app/public/controller/user-controller.service';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
+import { UserInformationService } from 'src/app/public/information/user-information.service';
 import { UserPageInformationService } from 'src/app/public/information/user-page-information.service';
 import { UserModel } from 'src/app/public/models/user-model';
 
@@ -20,9 +21,10 @@ export class ProfileComponent implements OnInit {
   constructor(private usrePageController:UserPageControllerService,
               private router:Router,
               private userController:UserControllerService,
-              public userPageInformation:UserPageInformationService) { }
+              public userPageInformation:UserPageInformationService,
+              private userInformation:UserInformationService) { }
   ngOnInit(): void {
-    this.userData=this.userController.getUserData();
+    this.userData=this.userInformation.userData;
   }
 
   back(){

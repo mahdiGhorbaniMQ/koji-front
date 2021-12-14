@@ -26,9 +26,9 @@ export class GroupProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedGroup=this.usrePageController.getSelectedGroup()!;
-    this.userName = this.userInformation.userData.name;
+    this.userName = this.userInformation.userData.firstName;
     console.log(this.selectedGroup)
-    if(this.selectedGroup.creator==this.userEmail){
+    if(this.selectedGroup.owner==this.userEmail){
       this.userIsAddmin = true;
     }
   }
@@ -41,7 +41,7 @@ export class GroupProfileComponent implements OnInit {
   deleteGroup(){
     this.backendAPI.deleteGroup(this.selectedGroup.id).subscribe(
       (respons:any)=>{
-        this.userInformation.userData.name="";
+        this.userInformation.userData.firstName="";
         this.router.navigate(["/user/home"]);
       },
       (error:any)=>{

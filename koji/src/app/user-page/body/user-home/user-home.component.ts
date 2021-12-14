@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GroupApiService } from 'src/app/public/api-services/group-api.service';
+import { UserApiService } from 'src/app/public/api-services/user-api.service';
 import { BackendAPIService } from 'src/app/public/backendAPI/backend-api.service';
 import { UserControllerService } from 'src/app/public/controller/user-controller.service';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
@@ -15,42 +17,48 @@ import { GroupModel } from 'src/app/public/models/group-model';
 })
 export class UserHomeComponent implements OnInit {
 
-  userGroups:GroupModel[]=[];
-  constructor(private userController:UserControllerService,
-              private router:Router,
+  userGroups:Map<String,GroupModel>=new Map();
+  constructor(private router:Router,
               private userPageController:UserPageControllerService,
-              private userInformation:UserInformationService,
+              public userInformation:UserInformationService,
               public userPageInformation:UserPageInformationService,
-              private backendAPI:BackendAPIService) { }
+              private userApi: UserApiService,
+              private groupApi:GroupApiService) { }
 
   ngOnInit(): void {
-    this.userGroups = this.userInformation.userData.groups;
-    if(this.userInformation.userData.name=="")
-    this.backendAPI.getUserData(localStorage.getItem("email")!)
-    .subscribe(
-      (data:any) => {        
-        this.userInformation.userData.groups=[];
-        this.userInformation.userData.name = data.name;
-        this.userInformation.userData.email = data.email;
-        data.teams.forEach((team:any) => {
-          var group:GroupModel = {
-            name: team.name,
-            link: team.invite_id,
-            bio: team.bio,
-            creator: team.creator.email,
-            id: team.id,
-            users: []
-          }
-          team.users.forEach((item:any) => {
-            var user = {name:item.name,email:item.email};
-            group.users.push(user);
+    if(localStorage.getItem("token")){
+      this.userInformation.events = new Map();
+      this.userApi.getDetails()
+      .subscribe(
+        (data:any) => {   
+          this.userInformation.userData={
+            firstName: data.firstName,
+            lastName: data.lastName,
+            email: data.email,
+            username: data.username,
+            groups: data.groups
+          };
+
+          data.groups.forEach((groupId:String) => {
+            this.groupApi.getDetailsById(groupId).subscribe(
+              (response:any) => {
+                this.userInformation.groups.set(response.id,{
+                  name:response.name,
+                  bio:response.bio,
+                  owner:response.owner,
+                  events:response.events,
+                  users:response.users,
+                  link:response.link,
+                  id:response.id
+                });
+              }
+            )
           });
-          this.userInformation.userData.groups.push(group);
-          this.userGroups = this.userInformation.userData.groups;
-        });
-      },
-      (error:Error) => console.log(error)
-    );
+        },
+        (error:Error) => console.log(error)
+      );
+    }
+    else this.navigate("login");
   }
   selectGroup(group:GroupModel){
     this.userPageController.setSelectedGroup(group);

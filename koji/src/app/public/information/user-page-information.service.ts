@@ -9,8 +9,8 @@ import { StyleModel } from '../models/style-model';
 export class UserPageInformationService {
   selectedGroup:GroupModel | undefined;
   selectedEvent:EventModel | undefined;
-  emptyEvent:EventModel= {title:"",desceriptions:"",creator:"",status:"",locationLink:""};
-  emptygroup:GroupModel={name:"",creator:"",link:"",users:[],events:[],id:""}
+  emptyEvent:EventModel= {title:"",descriptions:"",owner:"",dates:[],places:[],id:""};
+  emptygroup:GroupModel={name:"",owner:"",link:"",users:[],events:[],id:""}
   headerStyle:StyleModel={};
   bodyStyle:StyleModel={};
   navBarStyle:StyleModel={};

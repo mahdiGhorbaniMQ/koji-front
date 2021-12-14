@@ -13,7 +13,12 @@ export class BodyComponent implements OnInit {
               public userPageInformation:UserPageInformationService) { }
 
   ngOnInit(): void {
-    this.router.navigate(["user/home"]);
+    if(localStorage.getItem("token")){
+      this.router.navigate(["user/home"]);
+    }
+    else{
+      this.router.navigate(["login"]);
+    }
   }
 
 }

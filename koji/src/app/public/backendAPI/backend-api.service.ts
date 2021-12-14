@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ConditionsModel } from '../models/conditions-model';
+import { ConditionModel } from '../models/condition-model';
 import { UserModel } from '../models/user-model';
 
 @Injectable({
@@ -20,12 +20,12 @@ export class BackendAPIService {
     }
     return this.http.post(this.apiUrl+"/user/create/",reqBody);
   }
-  getUserTocken(email:string,password:string):any{
+  getUserTocken(username:string,password:string):any{
     var reqBody = {
-      "username" : email,
+      "username" : username,
       "password" : password
     }
-    return this.http.post(this.apiUrl+"/user/login/",reqBody);
+    return this.http.post(this.apiUrl+"/auth/signin/",reqBody);
   }
   getUserData(email:string):any{
     return this.http.get(this.apiUrl+"/user/"+email+"/detail")
@@ -91,7 +91,7 @@ export class BackendAPIService {
     return this.http.delete(this.apiUrl+"/team/"+id+"/delete/",httpOptions);
   }
 
-  sendUserConditions(conditions:ConditionsModel):any{
+  sendUserConditions(conditions:ConditionModel):any{
     return this.http.get(this.apiUrl);
   }
   getFinalConditions():any{

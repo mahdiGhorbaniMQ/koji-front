@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BackendAPIService } from 'src/app/public/backendAPI/backend-api.service';
+import { UserApiService } from '../api-services/user-api.service';
 import { UserInformationService } from '../information/user-information.service';
 import { GroupModel } from '../models/group-model';
 import { UserModel } from '../models/user-model';
@@ -12,49 +13,50 @@ export class UserControllerService {
 
   constructor(private backendAPI:BackendAPIService,
               private userInformation:UserInformationService,
-              private router:Router) { }
+              private router:Router,
+              private userApi:UserApiService) { }
   
-  getUserGroups():GroupModel[]{
-    return this.userInformation.userData.groups;
+  getUserGroups():any{
+    return this.userInformation.groups;
   }
-  fillUserData(email:string){
+  // fillUserData(email:string){
 
 
-    this.backendAPI.getUserData(email)
-    .subscribe(
-      (data:any) => {        
-        this.userInformation.userData.groups=[];
-        this.userInformation.userData.name = data.name;
-        this.userInformation.userData.email = data.email;
-        data.teams.forEach((team:any) => {
-          var group:GroupModel = {
-            name: team.name,
-            link: team.invite_id,
-            bio: team.creator.bio,
-            creator: team.email,
-            id: team.id,
-            users: []
-          }
-          team.users.forEach((item:any) => {
-            var user = {name:item.name,email:item.email};
-            group.users.push(user);
-          });
-          this.userInformation.userData.groups.push(group);
-        });
-      },
-      (error:Error) => console.log(error)
-    )
-  }
-  createUserAcount(email:string,name:string,password:string){
-    this.backendAPI.createAcount(email,name,password)
-    .subscribe(
-      (data:any) => {
+    // this.backendAPI.getUserData(email)
+    // .subscribe(
+      // (data:any) => {        
+      //   this.userInformation.userData.groups=[];
+      //   this.userInformation.userData.name = data.name;
+      //   this.userInformation.userData.email = data.email;
+      //   data.teams.forEach((team:any) => {
+      //     var group:GroupModel = {
+      //       name: team.name,
+      //       link: team.invite_id,
+      //       bio: team.creator.bio,
+      //       creator: team.email,
+      //       id: team.id,
+      //       users: []
+      //     }
+      //     team.users.forEach((item:any) => {
+      //       var user = {name:item.name,email:item.email};
+      //       group.users.push(user);
+      //     });
+      //     this.userInformation.userData.groups.push(group);
+      //   });
+      // },
+      // (error:Error) => console.log(error)
+  //   )
+  // }
+  // createUserAcount(email:string,name:string,password:string){
+  //   this.backendAPI.createAcount(email,name,password)
+  //   .subscribe(
+  //     (data:any) => {
 
-        this.router.navigate(["/user/home"]);
-      },
-      (error:Error) => console.log(error)
-    )
-  }
+  //       this.router.navigate(["/user/home"]);
+  //     },
+  //     (error:Error) => console.log(error)
+  //   )
+  // }
   deleteUserAccount(){
     this.backendAPI.deleteAcount(localStorage.getItem("email")!).subscribe(
       (data:any)=>{
@@ -65,11 +67,14 @@ export class UserControllerService {
       (error:any)=>{console.log(error)}
       )
   }
-  updateUserAccount(name:string,email:string){
-    this.backendAPI.updateAcount(this.userInformation.userData.email,email,name).subscribe(
+  updateUserAccount(firstName:string,lastName:string){
+    var userData = {
+      firstName: firstName,
+      lastName: lastName
+    }
+    this.userApi.update(userData).subscribe(
       (response:any)=>{
-        localStorage.setItem("email",email);
-        this.userInformation.userData.name="";
+        this.userInformation.userData.firstName="";
         this.router.navigate(["/user/home"]);
       },
       (err:any)=>{

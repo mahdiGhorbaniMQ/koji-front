@@ -6,10 +6,10 @@
                     <button class="btn btn-dark text-white rounded-pill h6" (click)="back()">
                         >
                     </button>
-                    <button *ngIf="false" class="btn btn-dark text-white ounded-pill h6" (click)="navigate('user/group/profile')">?</button>
+                    <button *ngIf="selectedEvent.owner==userInformation.userData.username" class="btn btn-dark text-white ounded-pill h6" (click)="navigate('user/group/event/setting')">?</button>
                 </div>
                 <p class="text-center h2">{{selectedEvent.title}}</p>
-                <p class="text-center h4">{{selectedEvent.desceriptions}}</p>
+                <p class="text-center h4">{{selectedEvent.descriptions}}</p>
             </div>
             <div class="body">
                 <div class="navigate-panel">
@@ -43,38 +43,49 @@
                         <h1>شرایط شما</h1>
                         <hr>
                         <form (ngSubmit)="setUserConditions()">
-                            <div *ngIf="state==1">
-                                <div class="mb-3">
+                            <div *ngIf="state.value==1">
+                                <div class="mb-3" *ngIf="places.length!=0">
                                     <label for="place" class="h5">مکان هایی که میتوانید را انتخاب کنید</label><br>
-                                    <br><br>
+                                    <br>
                                     <div class="places-container">
-                                        <div class="place-item p-3" (click)="changePlaceItemState(i)" [ngClass]="{'bg-success':place.selected,'bg-danger':!place.selected}" *ngFor="let place of places;let i=index">
-                                            <span class="p-3 text-white">{{place.title}}</span>
+                                        <div class="place-item p-3" [ngClass]="{'bg-success':place.selected,'bg-danger':!place.selected}" *ngFor="let place of places;let i=index">
+                                            <span class="p-3 text-white" (click)="changePlaceItemState(i)">{{place.title}}</span>
+                                            <span mat-button [matMenuTriggerFor]="menu" class="p-3 text-white bg-dark">{{place.users.length}}</span>
+                                            <mat-menu #menu="matMenu">
+                                                <div mat-menu-item *ngFor="let user of place.users">{{user.firstName}} {{user.lastName}}</div>
+                                            </mat-menu>
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="mb-3">
+                                <hr *ngIf="places.length!=0">
+                                <div class="mb-3" *ngIf="dates.length!=0">
                                     <label for="date" class="h5">تاریخ هایی که میتوانید را انتخاب کنید</label><br>   
-                                    <br><br>
+                                    <br>
                                     <div class="dates-container">
                                         <div class="dates-item p-3" (click)="changeDateItemState(i)" [ngClass]="{'bg-success':date.selected,'bg-danger':!date.selected}" *ngFor="let date of dates;let i=index">
                                             <span class="p-3 text-white">{{date.title}}</span>
+                                            <span mat-button [matMenuTriggerFor]="menu" class="p-3 text-white bg-dark">{{date.users.length}}</span>
+                                            <mat-menu #menu="matMenu">
+                                                <div mat-menu-item *ngFor="let user of date.users">{{user.firstName}} {{user.lastName}}</div>
+                                            </mat-menu>
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
+                                <hr *ngIf="dates.length!=0">
                             </div>
                             <div class="mb-3 h5">
-                                <input type="radio" value="1" name="state" id="state1" [(ngModel)]="state" checked>
-                                <label for="state1">فقط با شرایط بالا هستم</label><br>
-                                <input type="radio" value="2" name="state" id="state2" [(ngModel)]="state">
+                                <input (change)="changeState()" type="radio" value="1" name="state" id="state1" [formControl]="state" *ngIf="dates.length!=0||places.length!=0">
+                                <label for="state1" checked *ngIf="dates.length!=0||places.length!=0">فقط با شرایطی که انتخاب کردم هستم</label><br checked *ngIf="dates.length!=0||places.length!=0">
+                                <input (change)="changeState()" type="radio" value="2" name="state" id="state2" [formControl]="state">
                                 <label for="state2">همه جوره هستم</label><br>
-                                <input type="radio" value="3" name="state" id="state3" [(ngModel)]="state">
+                                <input (change)="changeState()" type="radio" value="3" name="state" id="state3" [formControl]="state">
                                 <label for="state3">کلا نیستم</label><br>
                             </div>
                             <hr>
-                            <button type="submit" class="submit btn btn-danger">ثبت شرایط</button>
+                            <button [disabled]="selectedEvent.finalPlace != null || selectedEvent.finalDate != null" type="submit" class="submit btn btn-danger">ثبت شرایط</button>
+                            <br><br>
+                            <div *ngIf="submitStatus">منتظر بمانید...</div>
+                            <div class="text-danger" *ngIf="selectedEvent.finalPlace != null || selectedEvent.finalDate != null">زمان رای گیری تمام شده است.</div>
                         </form>
                     </div>
                     <div
@@ -82,12 +93,25 @@
                         *ngIf="selectedItem=='all'"
                         class="all-conditions h5"
                     >
-                        <div *ngFor="let conditions of selectedEvent.conditions | keyvalue">
-                            {{conditions.key}}: 
+                        <div *ngFor="let condition of userInformation.conditions">
+                            {{condition.firstName}} {{condition.lastName}}: 
+                            <div *ngIf="condition.places.length>0">
+                                <br><br>
+                                مکان ها: <div *ngFor="let place of condition.places" class="bg-dark text-white rounded-pill m-3 p-3 text-center" style="width:fit-content; max-width: 90%; overflow: hidden;"> {{place}} </div>
+                            </div>
+                            <div *ngIf="condition.dates.length>0">
+                                <br><br>
+                                زمان ها: <div *ngFor="let date of condition.dates" class="bg-dark text-white rounded-pill m-3 p-3 text-center" style="width:fit-content; max-width: 90%; overflow: hidden;"> {{date}} </div>
+                            </div>
+                            <div *ngIf="condition.state == 2">
+                                <br><br>
+                                <span class="bg-success text-white rounded-pill p-3">همه جوره هست</span>
+                            </div>
+                            <div *ngIf="condition.state == 3">
+                                <br><br>
+                                <span class="bg-danger text-white rounded-pill p-3">کلا نیست</span>
+                            </div>
                             <br>
-                            {{conditions.value.placeName[0].title}}
-                            <br>
-                            {{conditions.value.localDate[0].title}}
                             <hr>
                         </div>
                     </div>
@@ -96,10 +120,40 @@
                         *ngIf="selectedItem=='final'"
                         class="final-conditions text-center h2"
                     >
-                    {{selectedEvent.finalConditions!.placeName[0].title}}
-                    <hr>
-                    {{selectedEvent.finalConditions!.localDate[0].title}}
-                    <hr>
+                        <div >
+                        <!-- *ngIf="selectedEvent.finalPlace != null || selectedEvent.finalDate != null"> -->
+                            {{selectedEvent.finalPlace}}affsdafasdf
+                            <hr>
+                            {{selectedEvent.finalDate}}afewfaewf
+                            <hr>
+                            <select class="btn btn-warning" name="userVote" (change)="setVote()" [(ngModel)]="userVote">
+                                <option value="true">موافقم و حضور دارم</option>
+                                <option value="false">موافق نیستم و حضور ندارم</option>
+                                <option value="null">مشخص نیست</option>
+                            </select>
+                            <hr>
+                            <div class="h4" *ngIf="selectedEvent.agreements!.length>0">
+                                افرادی که با شرایط موافق اند: <br><br>
+                                <div *ngFor="let agreement of selectedEvent.agreements">
+                                    {{agreement.firstName}} {{agreement.lastName}}
+                                    <br>
+                                </div>
+                                <hr>
+                            </div>
+                            <div class="h4" *ngIf="selectedEvent.disagreements!.length>0">
+                                افرادی که با شرایط موافق نیستند: <br><br>
+                                <div *ngFor="let disagreement of selectedEvent.disagreements">
+                                    {{disagreement.firstName}} {{disagreement.lastName}}
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="selectedEvent.finalPlace == null && selectedEvent.finalDate == null">
+                            <br>
+                            <h1 class="text-center h3">در حال حاضر شرایط نهایی مشخص نشده است.</h1>
+                            <br>
+                            <h1 class="text-center h5">سازنده رویداد باید در تنظیمات قرار به رای گیری خاتمه دهد تا شرایط نهایی مشخص شود.</h1>
+                        </div>
                     </div>
                 </div>
             </div> 

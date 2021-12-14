@@ -6,17 +6,17 @@
             </div>
             <div 
                 dir="rtl"
-                *ngFor="let group of userGroups" 
+                *ngFor="let item of userInformation.groups | keyvalue" 
                 class="group"
-                (click)="selectGroup(group)"
+                (click)="selectGroup(item.value)"
             >
-                <span class="h4">نام گروه: </span><span class="h5 p-3">{{group.name}}</span>
+                <span class="h4">نام گروه: </span><span class="h5 p-3">{{item.value.name}}</span>
             </div>
             <div 
                 dir="rtl"
-                *ngIf="true"
+                *ngIf="userInformation.userData.groups.length==0"
                 >
-                <p class="h4 p-4">شما در گروهی عضو نیستید. </p>
+                <p class="h4 p-4">گروهی یافت نشد.</p>
                 <p><a (click)="navigate('user/createGroup')" class="h6 p-4">ساختن گروه</a><a (click)="navigate('user/joinGroup')" class="h6">جستجوی گروه ها</a></p>
             </div>
         </div>

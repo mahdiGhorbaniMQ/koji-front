@@ -46,8 +46,8 @@ export class UpdateProfileComponent implements OnInit {
       name: this.name,  
       email: this.email, 
     });
-    this.name.setValue(this.userInformatiom.userData.name);
-    this.email.setValue(this.userInformatiom.userData.email);
+    this.name.setValue(this.userInformatiom.userData.firstName);
+    this.email.setValue(this.userInformatiom.userData.lastName);
   }
 
   back(){

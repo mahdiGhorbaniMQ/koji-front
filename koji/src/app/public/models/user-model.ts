@@ -1,8 +1,9 @@
 import { GroupModel } from "./group-model";
 
 export interface UserModel {
+    firstName:string;
+    lastName:string;
     email:string;
-    name:string;
-    password:string
-    groups:GroupModel[];
+    username:String;
+    groups:String[];
 }

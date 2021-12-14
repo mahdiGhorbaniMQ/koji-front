@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { BackendAPIService } from 'src/app/public/backendAPI/backend-api.service';
 import { UserControllerService } from 'src/app/public/controller/user-controller.service';
 import { UserPageControllerService } from 'src/app/public/controller/user-page-controller.service';
+import { LoginApiService } from '../public/api-services/login-api.service';
 
 @Component({
   selector: 'app-login-page',
@@ -14,20 +15,24 @@ import { UserPageControllerService } from 'src/app/public/controller/user-page-c
 export class LoginPageComponent implements OnInit {
 
   signUpForm!: FormGroup;
-  nameU!:FormControl;
-  emailU!:FormControl;
+  firstName!:FormControl;
+  lastName!:FormControl;
+  email!:FormControl;
+  usernameU!:FormControl;
   passwordU!:FormControl;
   signUpData={
-    name:"",
+    firstName:"",
+    lastName:"",
     email:"",
+    username:"",
     password:""
   }
 
   signInForm!: FormGroup;
-  emailI!:FormControl;
+  usernameI!:FormControl;
   passwordI!:FormControl;
   signInData={
-    email:"",
+    username:"",
     password:""
   }
 
@@ -42,37 +47,47 @@ export class LoginPageComponent implements OnInit {
 
   constructor(private builder: FormBuilder,
               private router:Router,
-              private backendAPI:BackendAPIService) { }
+              private loginApi:LoginApiService) { }
 
   ngOnInit(): void {
-    this.nameU= new FormControl(this.signUpData.name, [
+    this.firstName= new FormControl(this.signUpData.firstName, [
       Validators.minLength(3),
       Validators.required,
     ]);
-    this.emailU= new FormControl(this.signUpData.email, [
+    this.lastName= new FormControl(this.signUpData.lastName, [
+      Validators.minLength(3),
+      Validators.required,
+    ]);
+    this.email= new FormControl(this.signUpData.email, [
       Validators.email,
+      Validators.required,
+    ]);
+    this.usernameU= new FormControl(this.signUpData.username, [
+      Validators.minLength(4),
       Validators.required,
     ]);
     this.passwordU= new FormControl(this.signUpData.password, [
-      Validators.minLength(4),
+      Validators.minLength(6),
       Validators.required,
     ]);
     this.signUpForm = this.builder.group({  
-      name: this.nameU,  
-      email: this.emailU, 
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      username: this.usernameU, 
       password: this.passwordU
     });
 
-    this.emailI= new FormControl(this.signInData.email, [
-      Validators.email,
+    this.usernameI= new FormControl(this.signInData.username, [
+      Validators.minLength(4),
       Validators.required,
     ]),
     this.passwordI= new FormControl(this.signInData.password, [
-      Validators.minLength(4),
+      Validators.minLength(6),
       Validators.required,
     ])
     this.signInForm = this.builder.group({  
-      email: this.emailI,
+      username: this.usernameI,
       password: this.passwordI
     }); 
   }
@@ -83,18 +98,26 @@ export class LoginPageComponent implements OnInit {
     this.isLoadingU=true;
     this.signUpErr=false;
     this.signUpErrContent="";
-    var name=this.nameU.value;
-    var email=this.emailU.value;
-    var password=this.passwordU.value;
-    this.backendAPI.createAcount(email,name,password)
+
+    var userData = {
+      firstName: this.firstName.value,
+      lastName: this.lastName.value,
+      email: this.email.value,
+      username: this.usernameU.value,
+      password: this.passwordU.value
+    }
+    this.loginApi.signup(userData)
     .subscribe(
       (response:any) => {
         this.isLoadingU=false;
-        var token;
-        this.backendAPI.getUserTocken(email,password).subscribe(
+        var signinData= {
+          username: this.usernameU.value,
+          password: this.passwordU.value
+        }
+        this.loginApi.signin(signinData).subscribe(
           (response:any)=>{
             localStorage.setItem("token",response.token);
-            localStorage.setItem("email",email);
+            localStorage.setItem("username",response.username);
             this.router.navigate(["/user"]);
           },
           (error:any)=>{ 
@@ -118,14 +141,16 @@ export class LoginPageComponent implements OnInit {
     this.isLoadingI=true;
     this.signInErr=false;
     this.signInErrContent="";
-    var email=this.emailI.value;
-    var password=this.passwordI.value;
-    this.backendAPI.getUserTocken(email,password)
+    var userData = {
+      username: this.usernameI.value,
+      password: this.passwordI.value
+    }
+    this.loginApi.signin(userData)
     .subscribe(
       (response:any) => {
         this.isLoadingI=false;
         localStorage.setItem("token",response.token);
-        localStorage.setItem("email",email);
+        localStorage.setItem("username",response.username);
         this.router.navigate(["/user"]);
       },
       (error:any) => {
@@ -133,7 +158,7 @@ export class LoginPageComponent implements OnInit {
         this.signInErr=true;
         this.isLoadingI=false;
         if(error.status==0)
-          this.signUpErrContent="مشکل در برقراری ارتباط با سرور";
+          this.signInErrContent="مشکل در برقراری ارتباط با سرور";
         else if(error.status==400)
           this.signInErrContent="ایمیل یا پسورد اشتباه است.";
       }

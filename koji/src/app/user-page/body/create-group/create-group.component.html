@@ -16,6 +16,9 @@
                         <span [hidden]="groupName.valid || groupName.untouched" class="error"  dir="rtl">  
                             <div [hidden]="!groupName.hasError('minlength')">  
                                 نام شما نمیتواند کمتر از سه حرف باشد.  
+                            </div>
+                            <div [hidden]="!groupName.hasError('maxlength')">  
+                                نام شما نمیتواند بیشتر از سی حرف باشد.  
                             </div>  
                             <div [hidden]="!groupName.hasError('required')">  
                                 این فیلد ضروری است.
@@ -23,14 +26,12 @@
                         </span>  
                     </div>
                     <div dir="rtl">
-                        <textarea rows="4" cols="19" class="text-center" type="text" placeholder="درباره گروه" name="groupBio" id="groupBio" [formControl]="groupBio"></textarea>
+                        <textarea  class="text-center" type="text" placeholder="درباره گروه (اختیاری)" name="groupBio" id="groupBio" [formControl]="groupBio"></textarea>
                         <span [hidden]="groupBio.valid || groupBio.untouched" class="error"  dir="rtl">  
-                            <div [hidden]="!groupBio.hasError('minlength')">  
-                                نام شما نمیتواند کمتر از سه حرف باشد.  
-                            </div> 
-                            <div [hidden]="!groupBio.hasError('required')">  
-                                این فیلد ضروری است.
-                            </div>  
+                            <div [hidden]="!groupBio.hasError('maxlength')">  
+                                توضیحات نمیتواند بیشتر از چهل حرف باشد.
+                            </div>
+                            <br>
                         </span>  
                     </div>
                     <div dir="rtl">
