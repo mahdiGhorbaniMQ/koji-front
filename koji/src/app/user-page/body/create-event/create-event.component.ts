@@ -71,11 +71,12 @@ export class CreateEventComponent implements OnInit {
     ]);
     this.eventTitle= new FormControl(this.createEventData.eventTitle, [
       Validators.required,
-      Validators.maxLength(30)
+      Validators.maxLength(40)
     ]);
     this.eventDescriptions= new FormControl(this.createEventData.eventDescriptions,[
       Validators.maxLength(50)
     ]);
+    this.eventDescriptions.setValue("");
     this.eventPlaces= new FormControl(this.createEventData.eventPlaces);
     this.eventDates= new FormControl(this.createEventData.eventDates);
 
@@ -134,14 +135,13 @@ export class CreateEventComponent implements OnInit {
 
     this.eventApi.create(eventData).subscribe(
       (response:any)=>{
-        console.log(response)
         this.isLoading = false;
         this.createSuccess = true;
         this.createError = false;
         setTimeout(() => {
           this.goHome();
         }, 1500);
-        
+
         this.groupIds.forEach(groupId=>{
           this.eventApi.addToGroup(response.id,groupId).subscribe(
             (response:any)=>{},

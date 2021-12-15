@@ -6,10 +6,9 @@
                     <button class="btn btn-dark text-white rounded-pill h6" (click)="back()">
                         >
                     </button>
-                    <button *ngIf="selectedEvent.owner==userInformation.userData.username" class="btn btn-dark text-white ounded-pill h6" (click)="navigate('user/group/event/setting')">?</button>
+                    <button *ngIf="selectedEvent.owner==userInformation.userData.username" class="btn btn-dark text-white rounded-pill h6" (click)="navigate('user/group/event/setting')">تنظیمات</button>
                 </div>
                 <p class="text-center h2">{{selectedEvent.title}}</p>
-                <p class="text-center h4">{{selectedEvent.descriptions}}</p>
             </div>
             <div class="body">
                 <div class="navigate-panel">

@@ -19,12 +19,12 @@
                                 این فیلد ضروری است.
                             </div>
                             <div [hidden]="!eventTitle.hasError('maxlength')">  
-                                توضیحات نمیتواند بیشتر از سی حرف باشد.
+                                توضیحات نمیتواند بیشتر از چهل حرف باشد.
                             </div>
                             <br>
                         </span>
                     </div>
-                    <div class="m-4" style="position: relative; width: 100%; border-bottom: 2px solid black;"></div>
+                    <!-- <div class="m-4" style="position: relative; width: 100%; border-bottom: 2px solid black;"></div>
                     <div dir="rtl">
                         <label for="place" class="h5">توضیحاتی راجب قرار بنویسید (اختیاری)</label><br>
                         <textarea class="text-center" type="text" placeholder="توضیحات قرار" name="eventDescriptions" id="eventDescriptions" [formControl]="eventDescriptions"></textarea>
@@ -34,7 +34,7 @@
                             </div>
                             <br>
                         </span>  
-                    </div>
+                    </div> -->
                     <div class="m-4" style="position: relative; width: 100%; border-bottom: 2px solid black;"></div>
                      <div class="mt-5" dir="rtl">
                         <label for="date" class="h5">گروه هایی که میخواهید قرار را نمایش دهند انتخاب کنید</label><br><br>
@@ -70,31 +70,25 @@
                     </div>
     
                     <div class="mt-5" dir="rtl">
-                        <label for="date" class="h5">تاریخ های مورد نظر برای قرار را اضافه کنید</label><br>
-                        <select class="btn btn-warning m-4" name="timeType" id="timeType" [formControl]="timeType">
-                            <option value="text">متن</option>
-                            <option value="datetime-local">تاریخ</option>
-                        </select>
+                        <label for="date" class="h5">تاریخ های مورد نظر برای قرار را مشخص کنید</label><br>
                         <input 
-                             style="width: 60%; height: 40px;" 
-                             [type]="timeType.value" 
+                             style="width: 68%; height: 40px;" 
+                             type="text" 
                              name="date" id="date"
-                             dir="ltr"
-                             class="text-center"
                              [formControl]="dateInput"
-                             placeholder="زمان">
+                             placeholder="تاریخ و زمان">
 
                         <button class="btn btn-danger m-3" (click)="addDate()">افزودن</button>
                         <br><br>
                     </div>
-                    <div class="dates-container mb-5 pb-3" dir="rtl" style="position: relative; width: 100%; border-bottom: 2px solid black;">
+                    <div class="dates-container pb-3" dir="rtl" style="position: relative; width: 100%; border-bottom: 2px solid black;">
                         <div class="dates-item bg-success" *ngFor="let date of createEventData.eventDates;let i=index">
                             <button class="btn btn-danger mr-3" (click)="deleteDate(i)">x</button>
                             <span class="p-3 text-white">{{date}}</span>
                         </div>
                     </div>
     
-                    <button dir="rtl" (click)="create()" [disabled]=" groupIds.length==0" class="submit btn-form btn-success mb-3">ساختن</button>  
+                    <button dir="rtl" (click)="create()" [disabled]="groupIds.length==0 || !createEventForm.valid" class="submit btn-form btn-success mb-3 mt-4">ساختن</button>  
                     <div class="request_status" dir="rtl">
                         <div *ngIf="isLoading">لطفا منتظر بمانید ...</div>
                         <div class="text-success" *ngIf="createSuccess">قرار با موفقیت ساخته شد.</div>

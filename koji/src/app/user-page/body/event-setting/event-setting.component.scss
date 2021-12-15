@@ -16,13 +16,53 @@
     overflow: auto;
 }
 .header{
+    position: absolute;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     width: 100%;
-    height: 120px;
+    height: 150px;
+    border-bottom: 2px solid black;
+    flex-direction: column;
+}
+.body{
+    position: absolute;
+    top: 150px;
+    width: 100%;
+    // height: 70%;
+    border-top: 2px solid black;
+    border-top: none;
+}
+.navigate-panel{
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 100px;
     border-bottom: 2px solid black;
 }
+.navigate-item{
+    width: 33.33%;
+    height: 98px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    position: relative;
+}
+.navigate-item:hover{
+    background-color: rgba(169, 169, 169, 0.575);
+}
+.selected{
+    background-color: rgba(179, 176, 176, 0.575);
+}
+.update,.end,.delete{
+    position: absolute;
+    top: 100px;
+    // height: 90%;
+    width: 100%;
+    // padding: 30px;
+}
+
 .btn-back-container{
     display: flex;
     align-items: center;
@@ -32,6 +72,55 @@
     position: absolute;
     right: 5px;
     top: 40px;
+}
+.btn-form{
+    border-radius: 20px;
+    border: none;
+    color: #ffffff;
+    padding: 12px 45px;
+    transition: transform 80ms ease-in;
+}
+.btn-form:active{
+    transform: scale(0.95);
+}
+.btn-form:focus{
+    outline: none;
+}
+.btn-form.ghost{
+    background-color: transparent;
+    border-color: #ffffff;
+}
+.error{
+    color: red;
+}
+form{
+    // background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    padding: 0 50px;
+    width: 100%;
+    min-height: 350px;
+    text-align: center;
+}
+input,textarea{
+    border-radius: 5px;
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+}
+.places-container,.dates-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.place-item,.dates-item{
+    width: fit-content;
+    margin: 2px;
+    border-radius: 5px;
 }
 
 

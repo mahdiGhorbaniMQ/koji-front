@@ -27,7 +27,6 @@ export class GroupProfileComponent implements OnInit {
   ngOnInit(): void {
     this.selectedGroup=this.usrePageController.getSelectedGroup()!;
     this.userName = this.userInformation.userData.firstName;
-    console.log(this.selectedGroup)
     if(this.selectedGroup.owner==this.userEmail){
       this.userIsAddmin = true;
     }
