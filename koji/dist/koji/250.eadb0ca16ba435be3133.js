@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkkoji=self.webpackChunkkoji||[]).push([[250],{8250:(s,o,n)=>{n.r(o),n.d(o,{SiteSettingModule:()=>a});var l=n(8583),u=n(665),e=n(639);let a=(()=>{class t{}return t.\u0275fac=function(M){return new(M||t)},t.\u0275mod=e.oAB({type:t}),t.\u0275inj=e.cJS({imports:[[l.ez,u.u5,u.UX]]}),t})()}}]);
