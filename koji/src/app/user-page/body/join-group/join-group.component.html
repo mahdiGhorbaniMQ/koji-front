@@ -13,9 +13,10 @@
                 <div class="result-container row mb-5" *ngIf="searchSuccess" dir="rtl">
 
                     <div mat-button [matMenuTriggerFor]="menu" class="result col-xs-12">
+                        <br>
                         <p class="text-center pt-3">نام گروه: {{groupData.name}} </p>
-                        <br><br>
                         <p class="text-center">اعضا: {{userProfiles.length}} </p>
+                        <br>
                     </div>
                     <mat-menu #menu="matMenu">
                         <div mat-menu-item *ngFor="let user of userProfiles">{{user.firstName}} {{user.lastName}}</div>
@@ -27,7 +28,7 @@
                     <br>
                     <div class=" text-center" dir="rtl">
                         <div *ngIf="isJoining">لطفا منتظر بمانید ...</div>
-                        <div class="text-success" *ngIf="joinSuccess">شما با موقیت در گروه عضو شدید.</div>
+                        <div class="text-success" *ngIf="joinSuccess">عملیات موفقیت آمیز!</div>
                         <div class="text-danger" *ngIf="joinError">خطایی رخ داده است.</div>
                         <br>
                     </div>

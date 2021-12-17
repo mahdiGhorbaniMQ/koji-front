@@ -55,13 +55,13 @@ export class GroupApiService {
       headers: new HttpHeaders({ 
       'Authorization': 'Bearer '+ localStorage.getItem("token")})
     };
-    return this.http.get(environment.api+"/group/addUserToGroup?GroupId="+groupId+"&username="+username,httpOptions);
+    return this.http.get(environment.api+"/group/addUser?groupId="+groupId+"&username="+username,httpOptions);
   }
   removeUser(groupId:String,username:String):Observable<any>{
     var httpOptions = {
       headers: new HttpHeaders({ 
       'Authorization': 'Bearer '+ localStorage.getItem("token")})
     };
-    return this.http.get(environment.api+"/group/removeUserFromGroup?GroupId="+groupId+"&username="+username,httpOptions);
+    return this.http.get(environment.api+"/group/removeUserFromGroup?groupId="+groupId+"&username="+username,httpOptions);
   }
 }

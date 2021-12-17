@@ -40,7 +40,9 @@ export class JoinGroupComponent implements OnInit {
     this.router.navigate(["user/home"]);
   }
   join(){
-    this.groupApi.addUser(this.groupData.id,localStorage.getItem("uesrname")!).subscribe(
+    var groupId="";
+    groupId = this.groupLink.substring(4,this.groupLink.length-4);    
+    this.groupApi.addUser(groupId,localStorage.getItem("username")!).subscribe(
       (response:any)=>{
         this.isJoining=false;
         this.joinSuccess=true;

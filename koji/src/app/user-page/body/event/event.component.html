@@ -95,19 +95,19 @@
                         <div *ngFor="let condition of userInformation.conditions">
                             {{condition.firstName}} {{condition.lastName}}: 
                             <div *ngIf="condition.places.length>0">
-                                <br><br>
+                                <br>
                                 مکان ها: <div *ngFor="let place of condition.places" class="bg-dark text-white rounded-pill m-3 p-3 text-center" style="width:fit-content; max-width: 90%; overflow: hidden;"> {{place}} </div>
                             </div>
                             <div *ngIf="condition.dates.length>0">
-                                <br><br>
+                                
                                 زمان ها: <div *ngFor="let date of condition.dates" class="bg-dark text-white rounded-pill m-3 p-3 text-center" style="width:fit-content; max-width: 90%; overflow: hidden;"> {{date}} </div>
                             </div>
                             <div *ngIf="condition.state == 2">
-                                <br><br>
+                                
                                 <span class="bg-success text-white rounded-pill p-3">همه جوره هست</span>
                             </div>
                             <div *ngIf="condition.state == 3">
-                                <br><br>
+                                
                                 <span class="bg-danger text-white rounded-pill p-3">کلا نیست</span>
                             </div>
                             <br>
