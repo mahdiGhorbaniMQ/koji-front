@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkkoji=self.webpackChunkkoji||[]).push([[394],{2394:(d,n,u)=>{u.r(n),u.d(n,{JoinGroupModule:()=>M});var a=u(8583),l=u(665),r=u(3018);let M=(()=>{class o{}return o.\u0275fac=function(E){return new(E||o)},o.\u0275mod=r.oAB({type:o}),o.\u0275inj=r.cJS({imports:[[a.ez,l.u5,l.UX]]}),o})()}}]);
