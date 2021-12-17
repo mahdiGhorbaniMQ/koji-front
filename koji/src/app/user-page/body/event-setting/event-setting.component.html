@@ -21,7 +21,7 @@
                         [ngClass]="{'selected':selectedItem=='end'}"
                         (click)="selectedItem='end'"
                     >
-                        اتمام رای گیری 
+                        شرایط نهایی 
                     </div>
                     <div
                         class="navigate-item"
@@ -91,11 +91,49 @@
                         </form>
                     </div>
                     <div *ngIf="selectedItem=='end'" class="end">
-                        <div class="m-4 text-center" >
-                            <div dir="rtl" *ngIf="!userPageInformation.selectedEvent!.finalDate && !userPageInformation.selectedEvent!.finalPlace">
-                                <h1>شرایط نهایی درحال حاضر:</h1>
-                                زمان: <span>{{finalDate}}</span> 
-                                مکان: <span>{{finalPlace}}</span>
+                        <div class="m-3 text-center" >
+                            <div dir="rtl" >
+                                <h1 class="h2">شرایط نهایی درحال حاضر: 
+                                    <span class="h6" *ngIf="topDates.length>1 || topPlaces.length>1">
+                                        <br>
+                                        (به علت اینکه چند گزینه رای یکسانی آوردند میتوانید یکی را به دلخواه انتخاب کنید)
+                                    </span>
+                                </h1>
+                                <br><br>
+                                <div *ngIf="finalDate!='' && finalDate!=undefined">
+                                    <span class="h3">زمان: </span><span class="bg-dark text-white rounded-pill p-3">{{finalDate}}</span><br><br><br>
+                                </div>
+                                <div *ngIf="finalPlace!='' && finalPlace!=undefined">
+                                    <span class="h3">مکان: </span><span class="bg-dark text-white rounded-pill p-3">{{finalPlace}}</span>
+                                </div>
+                                <div *ngIf="(finalDate!='' && finalDate!=undefined) || (finalPlace!=''  && finalPlace!=undefined)"><br><br><br></div>
+                                <div>
+                                    <h1 class="h3">توضیحات قرار: </h1><br>
+                                    <p class="h4">{{eventDescriptions.value}}</p>
+                                </div>
+                                <div *ngIf="topDates.length>1"><br><hr><br></div>
+                                <h1 class="h4" *ngIf="topDates.length>1">زمان های برگزیده: <br><br></h1>
+                                <div class="dates-container" *ngIf="topDates.length>1">
+                                    <div class="dates-item p-3" [ngClass]="{'bg-success':date.selected,'bg-danger':!date.selected}" *ngFor="let date of topDates;let i=index">
+                                        <span class="p-3 text-white" (click)="changeDateItemState(i)">{{date.title}}</span>
+                                        <span mat-button [matMenuTriggerFor]="menu" class="p-3 text-white bg-dark">{{date.users.length}}</span>
+                                        <mat-menu #menu="matMenu">
+                                            <div mat-menu-item *ngFor="let user of date.users">{{user.firstName}} {{user.lastName}}</div>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <div *ngIf="topPlaces.length>1"><br><hr><br></div>
+                                <h1 class="h4" *ngIf="topPlaces.length>1">مکان های برگزیده: <br><br></h1>
+                                <div class="places-container" *ngIf="topPlaces.length>1">
+                                    <div class="place-item p-3" [ngClass]="{'bg-success':place.selected,'bg-danger':!place.selected}" *ngFor="let place of topPlaces;let i=index">
+                                        <span class="p-3 text-white" (click)="changePlaceItemState(i)">{{place.title}}</span>
+                                        <span mat-button [matMenuTriggerFor]="menu" class="p-3 text-white bg-dark">{{place.users.length}}</span>
+                                        <mat-menu #menu="matMenu">
+                                            <div mat-menu-item *ngFor="let user of place.users">{{user.firstName}} {{user.lastName}}</div>
+                                        </mat-menu>
+                                    </div>
+                                </div>
+                                <div *ngIf="topPlaces.length>1"><br><hr><br></div>
                                 <label for="place" class="h5">توضیحات نهایی را بنویسید (اختیاری)</label><br><br>
                                 <textarea
                                         style="width: 50%;" 
@@ -107,7 +145,12 @@
                                         [formControl]="eventDescriptions"
                                     >
                                 </textarea><br>
-                                <button class="submit btn-form btn-success mb-3 mt-4" (click)="end()">اتمام رای گیری</button>
+                                <button class="submit btn-form btn-success mb-3 mt-4" (click)="end()">ثبت شرایط نهایی</button>
+                                <div class="request_status" dir="rtl">
+                                    <div *ngIf="isEndLoading">لطفا منتظر بمانید ...</div>
+                                    <div class="text-success" *ngIf="endSuccess">شرایط با موفقیت ثبت شد.</div>
+                                    <div class="text-danger" *ngIf="endError">مشکلی در ثبت شرایط پیش آمده است.</div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -6,7 +6,7 @@
                     <button class="btn btn-dark text-white rounded-pill h6" (click)="back()">
                         >
                     </button>
-                    <button *ngIf="selectedEvent.owner==userInformation.userData.username" class="btn btn-dark text-white rounded-pill h6" (click)="navigate('user/group/event/setting')">تنظیمات</button>
+                    <button *ngIf="selectedEvent.owner==userInformation.userData.username" class="btn btn-dark text-white rounded-pill h6" (click)="saveConditions();navigate('user/group/event/setting');">تنظیمات</button>
                 </div>
                 <p class="text-center h2">{{selectedEvent.title}}</p>
             </div>
@@ -119,12 +119,21 @@
                         *ngIf="selectedItem=='final'"
                         class="final-conditions text-center h2"
                     >
-                        <div >
-                        <!-- *ngIf="selectedEvent.finalPlace != null || selectedEvent.finalDate != null"> -->
-                            {{selectedEvent.finalPlace}}affsdafasdf
-                            <hr>
-                            {{selectedEvent.finalDate}}afewfaewf
-                            <hr>
+                        <div *ngIf="(selectedEvent.finalPlace != undefined && selectedEvent.finalPlace != '' )|| (selectedEvent.finalDate != undefined && selectedEvent.finalDate != '')">
+                            <div *ngIf="selectedEvent.finalPlace != undefined || selectedEvent.finalPlace != ''">
+                                {{selectedEvent.finalPlace}}
+                                <hr>
+                            </div>
+                            <div *ngIf="selectedEvent.finalDate != undefined && selectedEvent.finalDate != ''">
+                                {{selectedEvent.finalDate}}
+                                <hr>
+                            </div>
+                            <div *ngIf="selectedEvent.descriptions != undefined && selectedEvent.descriptions != ''">
+                                توضیحات: 
+                                {{selectedEvent.descriptions}}
+                                <hr>
+                            </div>
+                            <p class="h4">آیا با شرایط موافقید؟ </p>                            
                             <select class="btn btn-warning" name="userVote" (change)="setVote()" [(ngModel)]="userVote">
                                 <option value="true">موافقم و حضور دارم</option>
                                 <option value="false">موافق نیستم و حضور ندارم</option>
@@ -132,7 +141,9 @@
                             </select>
                             <hr>
                             <div class="h4" *ngIf="selectedEvent.agreements!.length>0">
-                                افرادی که با شرایط موافق اند: <br><br>
+                                <br>
+                                افرادی که با شرایط موافق اند: 
+                                <span class="p-3 bg-dark text-white rounded-pill" dir="rtl">{{selectedEvent.agreements!.length}} نفر</span><br><br>
                                 <div *ngFor="let agreement of selectedEvent.agreements">
                                     {{agreement.firstName}} {{agreement.lastName}}
                                     <br>
@@ -140,14 +151,16 @@
                                 <hr>
                             </div>
                             <div class="h4" *ngIf="selectedEvent.disagreements!.length>0">
-                                افرادی که با شرایط موافق نیستند: <br><br>
+                                <br>
+                                افرادی که با شرایط موافق نیستند: 
+                                <span class="p-3 bg-dark text-white rounded-pill" dir="rtl">{{selectedEvent.disagreements!.length}} نفر</span><br><br>
                                 <div *ngFor="let disagreement of selectedEvent.disagreements">
                                     {{disagreement.firstName}} {{disagreement.lastName}}
                                     <br>
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="selectedEvent.finalPlace == null && selectedEvent.finalDate == null">
+                        <div *ngIf="selectedEvent.finalPlace == undefined && selectedEvent.finalDate == undefined">
                             <br>
                             <h1 class="text-center h3">در حال حاضر شرایط نهایی مشخص نشده است.</h1>
                             <br>

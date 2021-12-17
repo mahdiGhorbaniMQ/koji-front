@@ -32,7 +32,11 @@ export class EventSettingComponent implements OnInit {
   createSuccess:boolean=false;
   createError:boolean=false;
 
+  endSuccess:boolean=false;
+  endError:boolean=false;
+
   isLoading:boolean=false;
+  isEndLoading:boolean=false
 
   createEventData:any={
     eventTitle:"",
@@ -43,6 +47,9 @@ export class EventSettingComponent implements OnInit {
   dateType:string="text";
   finalDate:String="";
   finalPlace:String="";
+  
+  topPlaces:{title:String,selected:boolean,users:any[]}[]=[];
+  topDates:{title:String,selected:boolean,users:any[]}[]=[];
 
   constructor(private usrePageController:UserPageControllerService,
               private router:Router,
@@ -64,7 +71,7 @@ export class EventSettingComponent implements OnInit {
       this.eventDescriptions= new FormControl(this.createEventData.eventDescriptions,[
         Validators.maxLength(50)
       ]);
-      this.eventDescriptions.setValue("");
+      this.eventDescriptions.setValue(this.userPageInformation.selectedEvent?.descriptions);
       this.eventPlaces= new FormControl(this.createEventData.eventPlaces);
       this.eventDates= new FormControl(this.createEventData.eventDates);
   
@@ -85,70 +92,114 @@ export class EventSettingComponent implements OnInit {
     }
     generateFinalCondition(){
     
-      // var dates=this.userPageInformation.selectedEvent?.dates!;
-      // var places=this.userPageInformation.selectedEvent?.places!;
-      // var placesScore:Map<String,number>;
-      // var datesScore:Map<String,number>;
-      
-      // dates.forEach(item => {
-      //   var score = datesScore.get(item);
-      //   if(score)
-      //     datesScore.set(item,score+1);
-      //   else
-      //     datesScore.set(item,1);
-      // });
-      // places.forEach(item => {
-      //   var score = placesScore.get(item);
-      //   if(score)
-      //     placesScore.set(item,score+1);
-      //   else
-      //     placesScore.set(item,1);
-      // });
-      // var topPlaces:String[]=[];
-      // var topDates:String[]=[];
-      // dates.forEach(item=>{
-      //   if(datesScore.has(item)){
-      //       var score = datesScore.get(item);
-      //       if(topDates.length>0){
-              
-      //         if((datesScore.get(topDates[0])!)<score!){
-      //           topDates = [item];
-      //         }
-      //         else if((datesScore.get(topDates[0])!)==score!){
-      //           topDates.push(item);
-      //         }
-      //       }
-      //       else{
-      //         topDates.push(item)
-      //       }
-      //     }
-      // });
-      // places.forEach(item=>{
-      //     if(placesScore.has(item)){
+      var places= this.userInformation.selectedEventConditions.places;
+      var dates= this.userInformation.selectedEventConditions.dates;
 
-      //       var score = placesScore.get(item);
-      //       if(topPlaces.length>0){
-      //         if((placesScore.get(topPlaces[0])!)<score!){
-      //           topPlaces = [item];
-      //         }
-      //         else if((placesScore.get(topPlaces[0])!)==score!){
-      //           topPlaces.push(item);
-      //         }
-      //       }
-      //       else{
-      //         topPlaces.push(item)
-      //       }
-      //     }
-      //   });
-      //   console.log(topPlaces,topDates)
-      //   console.log(placesScore!,datesScore!)
-        
+      if(dates.length>0){
+        dates.forEach(date=>{
+          if(this.topDates.length==0)
+            this.topDates.push(date);
+          else if(this.topDates[0].users.length<date.users.length){
+            this.topDates=[date];
+          }
+          else if(this.topDates[0].users.length==date.users.length){
+            this.topDates.push(date);
+          }
+        });
+        this.topDates.forEach(date=>{
+          date.selected=false;
+          if(date.title==this.userPageInformation.selectedEvent?.finalDate){
+            date.selected=true;
+            this.finalDate=date.title;
+          }
+        })
+        if(this.finalDate==""){
+          this.topDates[0].selected=true;
+          this.finalDate=this.topDates[0].title;
+        }
+      }
+      if(places.length>0){
+        places.forEach(place=>{
+          if(this.topPlaces.length==0)
+            this.topPlaces.push(place);
+          else if(this.topPlaces[0].users.length<place.users.length){
+            this.topPlaces=[place];
+          }
+          else if(this.topPlaces[0].users.length==place.users.length){
+            this.topPlaces.push(place);
+          }
+        });
+
+        this.topPlaces.forEach(place=>{
+          place.selected=false;
+          if(place.title==this.userPageInformation.selectedEvent?.finalPlace){
+            place.selected=true;
+            this.finalPlace=place.title;
+          }
+        })
+        if(this.finalPlace==""){
+          this.topPlaces[0].selected=true;
+          this.finalPlace=this.topPlaces[0].title
+        }
+      }      
+    }
+    changeDateItemState(index:number){
+      this.finalDate = this.topDates[index].title;
+      this.topDates.forEach(date=>{
+        date.selected=false;
+      })
+      this.topDates[index].selected=true;
+    }
+    changePlaceItemState(index:number){
+      this.finalPlace = this.topPlaces[index].title;
+      this.topPlaces.forEach(place=>{
+        place.selected=false;
+      })
+      this.topPlaces[index].selected=true;
     }
     delete(){
       // this.eventApi
     }
     end(){
-
+      this.isEndLoading=true;
+      var eventData={
+        finalDate: this.finalDate,
+        finalPlace: this.finalPlace
+      }
+      if(eventData.finalDate=="") eventData.finalDate!=undefined
+      if(eventData.finalPlace=="") eventData.finalPlace!=undefined
+      this.eventApi.setFinalConditionByEventId(eventData,this.userPageInformation.selectedEvent!.id).subscribe(
+        (response:any)=>{
+          var dataForUpdate={
+            groupId:this.userPageInformation.selectedEvent?.id!,
+            title:this.userPageInformation.selectedEvent?.title!,
+            descriptions: this.eventDescriptions.value!,
+            dates:this.userPageInformation.selectedEvent?.dates!,
+            places:this.userPageInformation.selectedEvent?.places!
+          }
+          this.eventApi.updateById(dataForUpdate,this.userPageInformation.selectedEvent!.id).subscribe(
+            (upateResponse:any)=>{
+              this.endSuccess=true;
+              this.isEndLoading = false;
+              this.endError = false;
+              this.userPageInformation.selectedEvent = upateResponse;
+              setTimeout(() => {
+                this.back();
+              }, 1500);
+            },
+            error=>{
+              this.endError = true;
+              this.isEndLoading = false;
+              this.endSuccess = false;
+            }
+          );
+        },
+        error=>{
+          this.endError=true;
+          this.isEndLoading = false;
+          this.endSuccess = false;
+        }
+      );
     }
     addPlace(){
       if(this.placeInput.value!=""){
@@ -172,7 +223,7 @@ export class EventSettingComponent implements OnInit {
       this.isLoading = true;
       var eventData = {
         title: this.eventTitle.value,
-        descriptions: this.eventDescriptions.value,
+        descriptions: "",
         places: this.createEventData.eventPlaces,
         dates: this.createEventData.eventDates,
         groupId: "",
@@ -182,7 +233,8 @@ export class EventSettingComponent implements OnInit {
           this.isLoading = false;
           this.createSuccess = true;
           this.createError = false;
-          console.log(response)
+          this.userPageInformation.selectedEvent = response;
+
           setTimeout(() => {
             this.back();
           }, 1500);

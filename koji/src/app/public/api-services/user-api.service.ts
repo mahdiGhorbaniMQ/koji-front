@@ -24,7 +24,11 @@ export class UserApiService {
   }
 
   getProfileByUserName(username:String):Observable<any>{
-    return this.http.get(environment.api+"/user/profile?username="+username);
+    var httpOptions = {
+      headers: new HttpHeaders({ 
+      'Authorization': 'Bearer '+ localStorage.getItem("token")})
+    };
+    return this.http.get(environment.api+"/user/profile?username="+username,httpOptions);
   }
 
   update(userData:updateData):Observable<any>{

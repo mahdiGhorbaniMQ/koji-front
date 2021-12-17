@@ -107,6 +107,6 @@ export class EventApiService {
         'Authorization': 'Bearer '+ localStorage.getItem("token")
       })
     };
-    return this.http.put(environment.api+"/setFinalCondition?eventId="+eventId,finalCondition,httpOptions);
+    return this.http.put(environment.api+"/event/setFinalCondition?eventId="+eventId,finalCondition,httpOptions);
   }
 }

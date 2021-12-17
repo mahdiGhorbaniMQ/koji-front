@@ -14,7 +14,13 @@ export class UserInformationService {
   groups:Map<String,GroupModel>=new Map();
   events:Map<String,EventModel>=new Map();
   conditions:ConditionModel[]=[];
-
+  selectedEventConditions:{
+    places:{title:String,selected:boolean,users:any[]}[],
+    dates:{title:String,selected:boolean,users:any[]}[]
+  }={
+    dates:[],
+    places:[]
+  };
   userProfile?:UserProfileModel;
   groupProfile?:GroupProfileModel;
   constructor() {

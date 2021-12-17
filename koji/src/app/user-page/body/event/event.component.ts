@@ -48,7 +48,7 @@ export class EventComponent implements OnInit {
   ngOnInit(): void {
     this.state = new FormControl();
     this.state.setValue("1")
-    this.selectedEvent = this.userPageController.getSelectedEvent()!;
+    this.selectedEvent = this.userPageController.getSelectedEvent()!;    
     this.userInformation.conditions = [];
     this.eventApi.getVotesByEventId(this.selectedEvent.id).subscribe(
       (response:any)=>{
@@ -241,7 +241,11 @@ export class EventComponent implements OnInit {
       }
     );
   }
+  saveConditions(){
+    this.userInformation.selectedEventConditions.places = this.places;
+    this.userInformation.selectedEventConditions.dates = this.dates;
 
+  }
   back(){
     this.router.navigate(["user/group"])
   }

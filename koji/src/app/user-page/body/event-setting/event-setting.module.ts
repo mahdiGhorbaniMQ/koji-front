@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EventSettingComponent } from './event-setting.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 
@@ -14,6 +15,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgMultiSelectDropDownModule.forRoot()  ]
+    NgMultiSelectDropDownModule.forRoot(),
+    MatMenuModule  
+  ]
 })
 export class EventSettingModule { }

@@ -30,17 +30,17 @@ export class GroupComponent implements OnInit {
     this.groupEvents = this.userInformation.events;
     this.selectedGroup.events.forEach(eventId => {
       this.eventApi.getDetailsByEventId(eventId).subscribe(
-        (response:any)=>{       
+        (response:any)=>{  
           this.userInformation.events.set(response.id,{
             title:          response.title,
             descriptions:   response.descriptions,
             places:         response.places,
             dates:          response.dates,
-            finalDate:      response.fainalDate,
+            finalDate:      response.finalDate,
             finalPlace:     response.finalPlace,
             owner:          response.owner,
             id:             response.id,
-          });
+          });          
         },
         error=>{}
       )

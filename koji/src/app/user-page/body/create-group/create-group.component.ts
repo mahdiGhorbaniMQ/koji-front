@@ -42,7 +42,7 @@ export class CreateGroupComponent implements OnInit {
     this.groupName= new FormControl(this.createGroupData.groupName, [
       Validators.required,
       Validators.minLength(3),
-      Validators.minLength(30)
+      Validators.maxLength(30)
     ]);
     this.groupBio= new FormControl(this.createGroupData.groupBio, [
       Validators.maxLength(40)
@@ -65,7 +65,8 @@ export class CreateGroupComponent implements OnInit {
     this.isLoading = true;
     var groupData = {
       name: this.groupName.value,
-      bio: this.groupBio.value
+      bio: this.groupBio.value,
+      users: []
     }
     this.groupApi.create(groupData).subscribe(
       (Response:any)=>{

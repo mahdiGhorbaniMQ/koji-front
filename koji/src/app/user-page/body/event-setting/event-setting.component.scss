@@ -63,6 +63,17 @@
     // padding: 30px;
 }
 
+.places-container,.dates-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.place-item,.dates-item{
+    width: fit-content;
+    margin: 2px;
+    border-radius: 5px;
+}
+
 .btn-back-container{
     display: flex;
     align-items: center;
