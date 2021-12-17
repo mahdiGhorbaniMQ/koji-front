@@ -61,8 +61,8 @@
                                     <label for="date" class="h5">تاریخ هایی که میتوانید را انتخاب کنید</label><br>   
                                     <br>
                                     <div class="dates-container">
-                                        <div class="dates-item p-3" (click)="changeDateItemState(i)" [ngClass]="{'bg-success':date.selected,'bg-danger':!date.selected}" *ngFor="let date of dates;let i=index">
-                                            <span class="p-3 text-white">{{date.title}}</span>
+                                        <div class="dates-item p-3" [ngClass]="{'bg-success':date.selected,'bg-danger':!date.selected}" *ngFor="let date of dates;let i=index">
+                                            <span class="p-3 text-white" (click)="changeDateItemState(i)">{{date.title}}</span>
                                             <span mat-button [matMenuTriggerFor]="menu" class="p-3 text-white bg-dark">{{date.users.length}}</span>
                                             <mat-menu #menu="matMenu">
                                                 <div mat-menu-item *ngFor="let user of date.users">{{user.firstName}} {{user.lastName}}</div>
